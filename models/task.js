@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   area: area._id,
   //or is it like this? 
   //area: { type: Schema.Types.ObjectId, ref: Area}
