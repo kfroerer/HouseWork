@@ -6,6 +6,10 @@ const PORT = process.env.PORT || 3001;
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const db = require("./models");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const JWTStrategy = require("passport-jwt").Strategy;
+const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -23,10 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-const JWTStrategy = require("passport-jwt").Strategy;
-const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 // var secureRoute = require("./routes/apiRoutes");
 // require("./routes/htmlRoutes")(app);
@@ -80,16 +80,7 @@ passport.use(
 
 app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
 
-app.use(function(request, response, next){
-  response.locals.connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'housework'
-  })
-  response.locals.connection.connect();
-  next();
-});
+
 
 
 db.sequelize.sync(syncOptions).then(function() {
