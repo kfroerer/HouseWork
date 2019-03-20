@@ -1,14 +1,24 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function(sequelize, DataTypes) {
+  var House = sequelize.define("House", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  });
 
-const houseSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  name: { type: String, required: true, unique: true },
-  members: [{ type: Schema.Types.ObjectId, ref: 'Member' }],
-  date: { type: Date, default: Date.now },
-  password: {type: String, required: true}
-});
+  House.associate = function(models) {
+    House.hasMany(models.Member, {
+      // DO I need to specify????? 
+      // foreignKey: {
+      //   name: "userId"
+      // }
+    });
+    House.hasMany(models.Area, {
+      // foreignKey: {
+      //   name: "uid"
+      // }
+    });
+  };
 
-const House = mongoose.model("House", houseSchema);
-
-module.exports = House;
+  return House;
+};
