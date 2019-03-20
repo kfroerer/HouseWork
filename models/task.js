@@ -7,10 +7,9 @@ module.exports = function(sequelize, DataTypes) {
 
   Task.associate = function(models) {
     Task.belongsToMany(models.Area, {
-      // DO I need to specify????? 
-      // foreignKey: {
-      //   name: "areaId"
-      // }
+      foreignKey: {
+        name: "id"
+      }
     });
     
   };

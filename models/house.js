@@ -8,15 +8,14 @@ module.exports = function(sequelize, DataTypes) {
 
   House.associate = function(models) {
     House.hasMany(models.Member, {
-      // DO I need to specify????? 
-      // foreignKey: {
-      //   name: "userId"
-      // }
+      foreignKey: {
+        name: "id"
+      }
     });
     House.hasMany(models.Area, {
-      // foreignKey: {
-      //   name: "uid"
-      // }
+      foreignKey: {
+        name: "id"
+      }
     });
   };
 

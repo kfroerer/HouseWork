@@ -8,15 +8,14 @@ module.exports = function(sequelize, DataTypes) {
 
   Area.associate = function(models) {
     Area.belongsToMany(models.House, {
-      // DO I need to specify????? 
-      // foreignKey: {
-      //   name: "userId"
-      // }
+      foreignKey: {
+        name: "id"
+      }
     });
     Area.hasMany(models.Task, {
-      // foreignKey: {
-      //   name: "uid"
-      // }
+      foreignKey: {
+        name: "id"
+      }
     });
   };
 

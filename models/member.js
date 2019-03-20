@@ -23,7 +23,11 @@ module.exports = function(sequelize, DataTypes) {
 
   Member.associate = function(models) {
     // or does it need to be hasOne
-    Member.belongsTo(models.House);
+    Member.belongsTo(models.House{
+      foreignKey: {
+        name: 'id'
+      }
+    }); 
 
     // Member.create({
     //   username: "bball",
