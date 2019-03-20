@@ -4,22 +4,26 @@
     {
       "id": 1,
       "image": "http://cdn.onlinewebfonts.com/svg/img_450145.png",
-      "count": 0
+      "count": 0,
+      "title": "Living Room"
     },
     {
       "id": 2,
       "image": "https://icons-for-free.com/free-icons/png/512/2639777.png",
-      "count": 0
+      "count": 0,
+      "title": "Bedroom"
     },
     {
       "id": 3,
       "image": "https://image.flaticon.com/icons/svg/47/47561.svg",
-      "count": 0
+      "count": 0,
+      "title": "Kitchen"
     },
     {
       "id": 4,
       "image": "http://cdn.onlinewebfonts.com/svg/img_450138.png",
-      "count": 0
+      "count": 0,
+      "title": "Bathroom"
     }
   
   ]

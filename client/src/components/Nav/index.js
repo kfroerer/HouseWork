@@ -6,7 +6,7 @@ function Nav() {
       <a className="navbar-brand" href="/"
         style={{ textAlign: "center" }}
       >
-        ChoreEase-Oh!
+        HouseWork
       </a>
     </nav>
   );

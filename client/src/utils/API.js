@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // Gets all rooms
+  getRooms: function() {
+    return axios.get("/api/rooms");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // Gets the room with the given id
+  getRoom: function(id) {
+    return axios.get("/api/rooms/" + id);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // Deletes the room with the given id
+  deleteRoom: function(id) {
+    return axios.delete("/api/rooms/" + id);
   },
   // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  saveRoom: function(roomData) {
+    return axios.post("/api/rooms", roomData);
   }
 };
