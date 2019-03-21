@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Area.associate = function(models) {
-    Area.belongsToMany(models.House, {
+    Area.belongsTo(models.House, {
       foreignKey: {
         name: "id"
       }

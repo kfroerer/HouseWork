@@ -1,5 +1,5 @@
+// require('dotenv').config();
 const express = require("express");
-const mysql = require("mysql")
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -19,7 +19,6 @@ app.use(express.json());
 //   app.use(express.static("client/build"));
 // }
 // Add routes, both API and view
-app.use(routes);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -32,7 +31,7 @@ app.use(cookieParser());
 // require("./routes/htmlRoutes")(app);
 // require("./routes/authRoutes")(app);
 // require("./routes/loginRoutes")(app);
-
+// app.use(routes);
 passport.use(
   new LocalStrategy(
     {
@@ -78,8 +77,9 @@ passport.use(
   )
 );
 
-app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
+// app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
 
+var syncOptions = { force: false };
 
 
 

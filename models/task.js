@@ -5,12 +5,18 @@ module.exports = function(sequelize, DataTypes) {
 
   });
 
+
+  
   Task.associate = function(models) {
-    Task.belongsToMany(models.Area, {
+    Task.belongsTo(models.Area, {
       foreignKey: {
         name: "id"
       }
     });
+    Task.belongsToMany(models.House, {
+       through: task_house,
+       foreignKey: "taskId"
+       })
     
   };
 
