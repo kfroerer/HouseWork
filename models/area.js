@@ -3,19 +3,20 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
   });
 
   Area.associate = function(models) {
     Area.belongsTo(models.House, {
       foreignKey: {
-        name: "id"
+        name: "uid"
       }
     });
     Area.hasMany(models.Task, {
       foreignKey: {
-        name: "id"
-      }
+        name: "uid"
+      },
+      onDelete: "cascade"
     });
   };
 

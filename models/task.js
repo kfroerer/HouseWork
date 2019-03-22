@@ -1,8 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
     name: {type: DataTypes.STRING, allowNull: false},
-    frequency: {type: DataTypes.STRING, allowNull: false}
-
+    frequency: {type: DataTypes.STRING, allowNull: false},
   });
 
 
@@ -10,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
   Task.associate = function(models) {
     Task.belongsTo(models.Area, {
       foreignKey: {
-        name: "id"
+        name: "uid"
       }
     });
     // Task.belongsToMany(models.House, {

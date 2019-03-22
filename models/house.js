@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
   House.associate = function(models) {
     House.hasMany(models.Member, {
       foreignKey: {
-        name: "id"
+        name: "uid"
       }
     });
 
