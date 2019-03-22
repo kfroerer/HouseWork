@@ -21,10 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
-    date: {type: DataTypes.DATE, allowNull: false},
-    description: {type: DataTypes.TEXT, allowNull: false},
-
-
+    date: {type: DataTypes.DATE, allowNull: true},
+    description: {type: DataTypes.TEXT, allowNull: true}
   });
 
 
