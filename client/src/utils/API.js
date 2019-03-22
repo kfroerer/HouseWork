@@ -31,6 +31,7 @@ export default {
   },
   // Saves a task to the database
   saveTask: function(taskData) {
+    console.log(taskData);
     return axios.post("/api/tasks", taskData);
   },
   // Updates a task by id to the database

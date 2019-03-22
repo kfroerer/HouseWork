@@ -11,7 +11,11 @@ import rooms from "../rooms.json";
 class Task extends Component {
     state = {
         room: {},
-        tasks: {}
+        tasks: {},
+        title: "",
+        owner: "",
+        date: "",
+        frequency: ""
     };
     // When this component mounts, grab the room with the _id of this.props.match.params.id
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc
@@ -28,7 +32,7 @@ class Task extends Component {
     loadTasks = () => {
         API.getTasksByRoom()
             .then(res =>
-                this.setState({ tasks: res.data, name: "", owner: "", description: "", date: "" })
+                this.setState({ tasks: res.data, title: "", owner: "", description: "", date: "", frequency: "" })
             )
             .catch(err => console.log(err));
     };

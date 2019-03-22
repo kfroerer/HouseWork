@@ -12,11 +12,11 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       houseId: {type: Sequelize.INTEGER},
@@ -24,7 +24,7 @@ module.exports = {
       title: {type: Sequelize.STRING, allowNull: false},
       frequency: {type: Sequelize.STRING, allowNull: true},
       owner: {type: Sequelize.STRING, allowNull: false},
-      date: {type: Sequelize.DATE, allowNull: true},
+      date: {type: Sequelize.DATE, allowNull: false},
       description: {type: Sequelize.TEXT, allowNull: true}
     
     });
