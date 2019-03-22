@@ -1,6 +1,6 @@
 const db = require("../models");
 
-// Defining methods for the HouseController
+// Defining methods for the TaskController
 module.exports = {
   findAll: function(req, res) {
     db.Task.find(req.query)
@@ -12,16 +12,6 @@ module.exports = {
     db.Task.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
-  findByRoomId: function(req, res) {
-    db.Area.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.Task]
-    }).then(function(area) {
-      res.json(area.tasks);
-    });
   },
   create: function(req, res) {
     db.Task.create(req.body)
