@@ -31,12 +31,12 @@ export function Frequency(props) {
   return (
     <div className="form-group">
       <label for="freqOptions">Frequency:</label>
-      <select className="form-control" id="freqOptions">
-        <option {...props} >Daily</option>
-        <option {...props} >Weekly</option>
-        <option {...props} >Bi-Weekly</option>
-        <option {...props} >Monthly</option>
-        <option {...props} >Annually</option>
+      <select className="form-control" id="freqOptions" {...props}>
+        <option>Daily</option>
+        <option>Weekly</option>
+        <option>Bi-Weekly</option>
+        <option>Monthly</option>
+        <option>Annually</option>
       </select>
     </div>
   );

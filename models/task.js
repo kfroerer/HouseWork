@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
     id: {
-      allowNull: false,
+      allowNull: true,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
@@ -10,23 +10,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN
     },
     createdAt: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DATE
     },
     updatedAt: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DATE
     },
     houseId: {type: DataTypes.INTEGER},
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
-    date: {type: DataTypes.DATE, allowNull: true},
+    date: {type: DataTypes.DATE, allowNull: false},
     description: {type: DataTypes.TEXT, allowNull: true}
   });
 
-
-  
   Task.associate = function(models) {
     Task.belongsTo(models.Room, {
       foreignKey: {

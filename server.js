@@ -31,7 +31,7 @@ app.use(cookieParser());
 // require("./routes/htmlRoutes")(app);
 // require("./routes/authRoutes")(app);
 // require("./routes/loginRoutes")(app);
-// app.use(routes);
+app.use(routes);
 passport.use(
   new LocalStrategy(
     {
