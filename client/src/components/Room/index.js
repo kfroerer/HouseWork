@@ -1,7 +1,7 @@
 import React from "react";
 
 const Card = props => (
-  <div style={cardStyle} onClick={() => props.roomSelected(props.id)}>
+  <div style={cardStyle}>
     <div style={imgContainerStyle}>
       <img style={imgStyle} alt={props.name} src={props.image} />
     </div>
@@ -9,8 +9,8 @@ const Card = props => (
 );
 
 const cardStyle = {
-  height: "275px",
-  width: "275px",
+  height: "300px",
+  width: "300px",
   float: "left"
 }
 
