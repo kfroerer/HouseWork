@@ -1,23 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
-  var Area = sequelize.define("Area", {
+  var Room = sequelize.define("Room", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
   });
 
-  Area.associate = function(models) {
-    Area.belongsTo(models.House, {
+  Room.associate = function(models) {
+    Room.belongsTo(models.House, {
       foreignKey: {
         name: "id"
       }
     });
-    Area.hasMany(models.Task, {
+    Room.hasMany(models.Task, {
       foreignKey: {
         name: "id"
-      }
+      },
+      onDelete: "cascade"
     });
   };
 
-  return Area;
+  return Room;
 };
