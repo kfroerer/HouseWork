@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       type: DataTypes.DATE
     },
-    houseId: {type: DataTypes.INTEGER},
+    
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Task.associate = function(models) {
-    Task.belongsTo(models.Area, {
+    Task.belongsTo(models.Room, {
       foreignKey: {
         name: "id"
       }

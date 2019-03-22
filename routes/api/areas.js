@@ -1,17 +1,17 @@
 const router = require("express").Router();
-const AreaController = require("../../controllers/AreaController");
+const roomController = require("../../controllers/roomController");
 
-// Matches with "/api/books"
+// Matches with "/api/room"
 router
   .route("/")
-  .get(AreaController.findAll)
-  .post(AreaController.create);
+  .get(roomController.findAll)
+  .post(roomController.create);
 
-// Matches with "/api/books/:id"
+// Matches with "/api/room/:id"
 router
   .route("/:id")
-  .get(AreaController.findById)
-  .put(AreaController.update)
-  .delete(AreaController.remove);
+  .get(roomController.findById)
+  .put(roomController.update)
+  .delete(roomController.remove);
 
 module.exports = router;
