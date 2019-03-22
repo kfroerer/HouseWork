@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/rooms", roomData);
   },
   // Gets all tasks for a specific room ID
-  getTasks: function(roomID) {
+  getTasksByRoom: function(roomID) {
     return axios.get("/api/rooms/" + roomID + "/tasks");
   },
   // Gets the task with the given id

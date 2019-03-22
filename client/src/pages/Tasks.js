@@ -26,9 +26,9 @@ class Task extends Component {
     }
 
     loadTasks = () => {
-        API.getTasks()
+        API.getTasksByRoom()
             .then(res =>
-                this.setState({ tasks: res.data, title: "", author: "", synopsis: "" })
+                this.setState({ tasks: res.data, name: "", owner: "", description: "", owner: "" })
             )
             .catch(err => console.log(err));
     };

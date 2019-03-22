@@ -13,6 +13,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByRoomId: function(req, res) {
+    db.Area.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Task]
+    }).then(function(area) {
+      res.json(area.tasks);
+    });
+  },
   create: function(req, res) {
     db.Task.create(req.body)
       .then(dbModel => res.json(dbModel))
