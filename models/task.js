@@ -4,20 +4,20 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     status: {
-      type: Sequelize.BOOLEAN
+      type: DataTypes.BOOLEAN
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
-    houseId: {type: Sequelize.INTEGER},
+    
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
@@ -30,9 +30,9 @@ module.exports = function(sequelize, DataTypes) {
 
   
   Task.associate = function(models) {
-    Task.belongsTo(models.Area, {
+    Task.belongsTo(models.Room, {
       foreignKey: {
-        name: "uid"
+        name: "id"
       }
     });
     // Task.belongsToMany(models.House, {

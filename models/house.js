@@ -6,7 +6,8 @@ module.exports = function(sequelize, DataTypes) {
     "House", 
     {
         username: { type: DataTypes.STRING, allowNull:false },
-        password: { type: DataTypes.STRING, allowNull: false}
+        password: { type: DataTypes.STRING, allowNull: false},
+        
     },
 
     {
@@ -24,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
   House.associate = function(models) {
     House.hasMany(models.Member, {
       foreignKey: {
-        name: "uid"
+        name: "id"
       }
     });
 
