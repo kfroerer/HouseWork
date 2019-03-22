@@ -1,13 +1,15 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function(sequelize, DataTypes) {
+  var Member = sequelize.define("Member",
+    { name: DataTypes.STRING }
+  );
 
-const memberSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  house: house._id,
-  name: { type: String, required: true, unique: true },
-  date: { type: Date, default: Date.now }
-});
+  Member.associate = function(models) {
+    Member.belongsTo(models.House, {
+      foreignKey: {
+        name: 'id'
+      }
+    }); 
+  };
 
-const Member = mongoose.model("Member", memberSchema);
-
-module.exports = Member;
+  return Member;
+};

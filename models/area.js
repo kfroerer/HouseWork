@@ -1,15 +1,23 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function(sequelize, DataTypes) {
+  var Area = sequelize.define("Area", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  });
 
-const areaSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  house: house._id,
-  //or is it like this? 
-  //house: { type: Schema.Types.ObjectId, ref: House}
-  name: { type: String, required: true, unique: true },
-  date: { type: Date, default: Date.now }
-});
+  Area.associate = function(models) {
+    Area.belongsTo(models.House, {
+      foreignKey: {
+        name: "id"
+      }
+    });
+    Area.hasMany(models.Task, {
+      foreignKey: {
+        name: "id"
+      }
+    });
+  };
 
-const Area = mongoose.model("Area", areaSchema);
-
-module.exports = Area;
+  return Area;
+};

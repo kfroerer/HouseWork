@@ -1,14 +1,45 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+'use strict';
+const bcrypt = require('bcrypt');
 
-const houseSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  name: { type: String, required: true, unique: true },
-  members: [{ type: Schema.Types.ObjectId, ref: 'Member' }],
-  date: { type: Date, default: Date.now },
-  password: {type: String, required: true}
-});
+module.exports = function(sequelize, DataTypes) {
+  const House = sequelize.define(
+    "House", 
+    {
+        username: { type: DataTypes.STRING, allowNull:false },
+        password: { type: DataTypes.STRING, allowNull: false}
+    },
 
-const House = mongoose.model("House", houseSchema);
+    {
+      hooks: {
+        beforeCreate: function(member) {
+          var salt = bcrypt.genSaltSync();
+          member.password = bcrypt.hashSync(member.password, salt);
+        }
+      }
+    }
 
-module.exports = House;
+
+  );
+
+  House.associate = function(models) {
+    House.hasMany(models.Member, {
+      foreignKey: {
+        name: "id"
+      }
+    });
+
+    // House.hasMany(models.Task, { 
+    //   through: task_house,
+    //   foreignKey: 'houseId'
+    //  })
+  };
+
+  House.prototype.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+
+
+  House.sync();
+
+  return House;
+};
