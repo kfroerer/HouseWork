@@ -7,14 +7,14 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Room.associate = function(models) {
-    Room.belongsTo(models.House, {
-      foreignKey: {
-        name: "id"
-      }
-    });
+    // Room.belongsTo(models.House, {
+    //   foreignKey: {
+    //     name: "roomId"
+    //   }
+    // });
     Room.hasMany(models.Task, {
       foreignKey: {
-        name: "id"
+        name: "roomId"
       },
       onDelete: "cascade"
     });
