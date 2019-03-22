@@ -4,27 +4,25 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     status: {
-      type: Sequelize.BOOLEAN
+      type: DataTypes.BOOLEAN
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
-    houseId: {type: Sequelize.INTEGER},
+    houseId: {type: DataTypes.INTEGER},
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
-    date: {type: DataTypes.DATE, allowNull: false},
-    description: {type: DataTypes.TEXT, allowNull: false},
-
-
+    date: {type: DataTypes.DATE, allowNull: true},
+    description: {type: DataTypes.TEXT, allowNull: true}
   });
 
 
