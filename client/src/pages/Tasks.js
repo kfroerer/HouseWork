@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, FormBtn, Date} from "../components/Form";
 import rooms from "../rooms.json";
 
 class Task extends Component {
@@ -16,9 +16,13 @@ class Task extends Component {
     // When this component mounts, grab the room with the _id of this.props.match.params.id
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc
     componentDidMount() {
-        API.getRoom(this.props.match.params.id)
-            .then(res => this.setState({ room: res.data }))
-            .catch(err => console.log(err));
+        // API.getRoom(this.props.match.params.id)
+        //     .then(res => this.setState({ room: res.data }))
+        //     .catch(err => console.log(err));
+        let room = rooms.find((room) => {
+            return  (room.id == this.props.match.params.id);
+        });
+        this.setState({room});
     }
 
     loadTasks = () => {
@@ -42,6 +46,20 @@ class Task extends Component {
         });
     };
 
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.title && this.state.owner && this.state.date) {
+          API.saveTask({
+            title: this.state.title,
+            owner: this.state.owner,
+            date: this.state.date,
+            description: this.state.description
+          })
+            .then(res => this.loadRooms())
+            .catch(err => console.log(err));
+        }
+    };
+
     render() {
         return (
             <Container fluid>
@@ -59,7 +77,7 @@ class Task extends Component {
                             <ListItem key={task._id}>
                                 <Link to={"/tasks/" + task._id}>
                                     <strong>
-                                        {task.title}
+                                        {task.title} due: {task.date} by {task.owner}
                                     </strong>
                                 </Link>
                                 <DeleteBtn onClick={() => this.deleteTask(task._id)} />
@@ -67,7 +85,7 @@ class Task extends Component {
                         ))}
                     </List>
                 ) : (
-                        <h3>No Results to Display</h3>
+                        <h3 style = {{paddingTop: "10px", paddingBottom: "10px"}}>Looks Like You Have No Tasks Scheduled Here!</h3>
                     )}
 
                 {/* form for creating a new task, figuring this should be a modal eventually  */}
@@ -84,11 +102,10 @@ class Task extends Component {
                         name="owner"
                         placeholder="Owner (required)"
                     />
-                    <Input
+                    <Date
                         value={this.state.date}
                         onChange={this.handleInputChange}
                         name="date"
-                        placeholder="Date (required)"
                     />
                     <TextArea
                         value={this.state.synopsis}
@@ -97,7 +114,7 @@ class Task extends Component {
                         placeholder="Description (Optional)"
                     />
                     <FormBtn
-                        disabled={!(this.state.author && this.state.title)}
+                        disabled={!(this.state.owner && this.state.title && this.state.date)}
                         onClick={this.handleFormSubmit}
                     >
                         Add Chore!
