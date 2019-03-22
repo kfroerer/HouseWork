@@ -20,7 +20,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       houseId: {type: Sequelize.INTEGER},
-      taskId: {type: Sequelize.INTEGER}
+      taskId: {type: Sequelize.INTEGER},
+      title: {type: Sequelize.STRING, allowNull: false},
+      frequency: {type: Sequelize.STRING, allowNull: true},
+      owner: {type: Sequelize.STRING, allowNull: false},
+      date: {type: Sequelize.DATE, allowNull: true},
+      description: {type: Sequelize.TEXT, allowNull: true}
     
     });
   },

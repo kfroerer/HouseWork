@@ -5,7 +5,7 @@ import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn, Date} from "../components/Form";
+import { Input, TextArea, FormBtn, Date, Frequency} from "../components/Form";
 import rooms from "../rooms.json";
 
 class Task extends Component {
@@ -53,6 +53,7 @@ class Task extends Component {
             title: this.state.title,
             owner: this.state.owner,
             date: this.state.date,
+            frequency: this.state.frequency,
             description: this.state.description
           })
             .then(res => this.loadTasks())
@@ -106,6 +107,11 @@ class Task extends Component {
                         value={this.state.date}
                         onChange={this.handleInputChange}
                         name="date"
+                    />
+                    <Frequency
+                        value={this.state.frequency}
+                        onChange={this.handleInputChange}
+                        name="frequency"
                     />
                     <TextArea
                         value={this.state.synopsis}

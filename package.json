@@ -35,11 +35,6 @@
     "sequelize": "^5.1.0",
     "sequelize-cli": "^5.4.0",
     "create-react-context": "^0.2.3",
-    "express": "^4.16.3",
-    "if-env": "^1.0.4",
-    "mongoose": "^5.3.16",
-    "prop-types": "^15.7.2",
-    "proptypes": "^1.1.0",
-    "react-datepicker": "^2.2.0"
+    "mongoose": "^5.3.16"
   }
 }

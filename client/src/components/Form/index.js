@@ -21,7 +21,23 @@ export function TextArea(props) {
 export function Date(props) {
   return (
     <div className="form-group">
-      <input className="form-control" type="date" {...props} />
+      <label for="dueDate">First Due Date:</label>
+      <input className="form-control" id="dueDate" type="date" {...props} />
+    </div>
+  );
+}
+
+export function Frequency(props) {
+  return (
+    <div className="form-group">
+      <label for="freqOptions">Frequency:</label>
+      <select className="form-control" id="freqOptions">
+        <option {...props} >Daily</option>
+        <option {...props} >Weekly</option>
+        <option {...props} >Bi-Weekly</option>
+        <option {...props} >Monthly</option>
+        <option {...props} >Annually</option>
+      </select>
     </div>
   );
 }
