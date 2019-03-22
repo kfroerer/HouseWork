@@ -35,18 +35,18 @@ app.use(cookieParser());
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "username",
+      nameField: "name",
       passwordField: "password"
     },
-    function(username, password, cb) {
-      db.Member.findOne({
+    function(name, password, cb) {
+      db.House.findOne({
         where: {
-          username: username
+          name: name
         }
       })
         .then(function(user) {
-          if (!member || !member.validatePassword(password)) {
-            return cb(null, false, { message: "Incorrect email or password." });
+          if (!house || !house.validatePassword(password)) {
+            return cb(null, false, { message: "Incorrect name or password." });
           }
           return cb(null, member, { message: "Logged In Successfully" });
         })

@@ -5,10 +5,8 @@ module.exports = function(sequelize, DataTypes) {
   const House = sequelize.define(
     "House", 
     {
-        name: DataTypes.STRING,
-        type: DataTypes.STRING,
-        allowNull: false,
-        password: { type: DataTypes.STRING, allowNull: false},
+        username: { type: DataTypes.STRING, allowNull:false },
+        password: { type: DataTypes.STRING, allowNull: false}
     },
 
     {
@@ -30,10 +28,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    House.hasMany(models.Task, { 
-      through: task_house,
-      foreignKey: 'houseId'
-     })
+    // House.hasMany(models.Task, { 
+    //   through: task_house,
+    //   foreignKey: 'houseId'
+    //  })
   };
 
   House.prototype.validatePassword = function(password) {

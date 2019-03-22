@@ -13,10 +13,10 @@ module.exports = function(sequelize, DataTypes) {
         name: "id"
       }
     });
-    Task.belongsToMany(models.House, {
-       through: task_house,
-       foreignKey: "taskId"
-       })
+    // Task.belongsToMany(models.House, {
+    //    through: task_house,
+    //    foreignKey: "taskId"
+    //    })
     
   };
 
