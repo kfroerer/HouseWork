@@ -29,7 +29,7 @@ function Nav() {
                   <label for="houseName">House Name</label>
                   <input type="text" class="form-control" id="houseName" aria-describedby="houseHelp" placeholder="Enter House Name"></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="inputPassword">Password</label>
                   <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
                 </div>
@@ -59,7 +59,7 @@ function Nav() {
                   <label for="houseName">Existing House Name</label>
                   <input type="text" class="form-control" id="houseName" aria-describedby="houseHelp" placeholder="Enter Existing House Name"></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="inputPassword">Password</label>
                   <input type="password" class="form-control" id="inputPassword" placeholder="Password"></input>
                 </div>
