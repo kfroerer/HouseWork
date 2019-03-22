@@ -28,7 +28,7 @@ class Task extends Component {
     loadTasks = () => {
         API.getTasksByRoom()
             .then(res =>
-                this.setState({ tasks: res.data, name: "", owner: "", description: "", owner: "" })
+                this.setState({ tasks: res.data, name: "", owner: "", description: "", date: "" })
             )
             .catch(err => console.log(err));
     };
@@ -55,7 +55,7 @@ class Task extends Component {
             date: this.state.date,
             description: this.state.description
           })
-            .then(res => this.loadRooms())
+            .then(res => this.loadTasks())
             .catch(err => console.log(err));
         }
     };
