@@ -1,21 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Task = sequelize.define("Task", {
-    id: {
-      allowNull: true,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
     status: {
       type: DataTypes.BOOLEAN
-    },
-    createdAt: {
-      allowNull: true,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: true,
-      type: DataTypes.DATE
     },
     houseId: {type: DataTypes.INTEGER},
     title: {type: DataTypes.STRING, allowNull: false},
