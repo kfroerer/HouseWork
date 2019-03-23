@@ -3,31 +3,56 @@ const db = require("../models");
 // Defining methods for the TaskController
 module.exports = {
   findAll: function(req, res) {
-    db.Task.find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+    db.task
+      .findAll()
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Task.findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+    db.task
+      .findById(req.params.id)
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Task.create(req.body)
-      .then(dbModel => res.json(dbModel))
+    db.task
+      .create({
+        title: req.body.title,
+        frequency: req.params.frequency,
+        owner: req.params.owner,
+        date: req.params.date,
+        description: req.params.description
+      })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
-      console.log(res.status(422).json());
   },
   update: function(req, res) {
-    db.Task.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+    db.task
+      .update(
+        {
+          title: req.params.title,
+          frequency: req.params.frequency,
+          owner: req.params.owner,
+          date: req.params.date,
+          description: req.params.description
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      )
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Task.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+    db.task
+      .destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   }
 };

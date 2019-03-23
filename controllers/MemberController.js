@@ -3,30 +3,46 @@ const db = require("../models");
 // Defining methods for the HouseController
 module.exports = {
   findAll: function(req, res) {
-    db.Member.find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+    db.member
+      .findAll()
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Member.findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+    db.member
+      .findById(req.params.id)
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Member.create(req.body)
-      .then(dbModel => res.json(dbModel))
+    db.member
+      .create({ name: req.body.name })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Member.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+    db.member
+      .update(
+        {
+          name: req.params.name
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      )
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Member.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+    db.member
+      .destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   }
 };
