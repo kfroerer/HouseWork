@@ -32,11 +32,11 @@ export function Frequency(props) {
     <div className="form-group">
       <label for="freqOptions">Frequency:</label>
       <select className="form-control" id="freqOptions" {...props}>
-        <option>Daily</option>
-        <option>Weekly</option>
-        <option>Bi-Weekly</option>
-        <option>Monthly</option>
-        <option>Annually</option>
+        <option value= "Daily">Daily</option>
+        <option value= "Weeklyu">Weekly</option>
+        <option value= "Bi-Weekly">Bi-Weekly</option>
+        <option value= "Monthly">Monthly</option>
+        <option value= "Annually">Annually</option>
       </select>
     </div>
   );

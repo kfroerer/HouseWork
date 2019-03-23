@@ -14,7 +14,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findTasksByRoomId: function(req, res) {
-    db.room.findOne({
+    console.warn('controller log', req.body, req.params)
+    db.Room.findOne({
       where: {
         id: req.params.id
       },
