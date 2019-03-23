@@ -3,40 +3,45 @@ const db = require("../models");
 // Defining methods for the HouseController
 module.exports = {
   findAll: function(req, res) {
-    db.Member.findAll()
+    db.member
+      .findAll()
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Member.findById(req.params.id)
+    db.member
+      .findById(req.params.id)
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Member.create({ name: req.body.name })
+    db.member
+      .create({ name: req.body.name })
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Member.update(
-      {
-        name: req.params.name
-      },
-      {
-        where: {
-          id: req.params.id
+    db.member
+      .update(
+        {
+          name: req.params.name
+        },
+        {
+          where: {
+            id: req.params.id
+          }
         }
-      }
-    )
+      )
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Member.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+    db.member
+      .destroy({
+        where: {
+          id: req.params.id
+        }
+      })
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   }
