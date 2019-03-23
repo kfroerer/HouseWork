@@ -3,31 +3,41 @@ const db = require("../models");
 // Defining methods for the TaskController
 module.exports = {
   findAll: function(req, res) {
-    db.Task.find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+    db.Task.findAll()
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Task.findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Task.create(req.body)
-      .then(dbModel => res.json(dbModel))
+    db.Task.create({ name: req.body.name })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
-      console.log(res.status(422).json());
   },
   update: function(req, res) {
-    db.Task.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
+    db.Task.update(
+      {
+        name: req.params.name
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Task.findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+    db.Task.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   }
 };
