@@ -10,14 +10,7 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Brush bowl and clean all surfaces",
-        createdAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        },
-        updatedAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        }
+        
 
       },
       {
@@ -27,14 +20,7 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Empty, fill, then run dishwasher",
-        createdAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        },
-        updatedAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        }
+        
 
       },
       {
@@ -44,14 +30,7 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Dust all hard surfaces",
-        createdAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        },
-        updatedAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        }
+        
 
       },
       {
@@ -61,14 +40,7 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Vacuum or sweep and mop",
-        createdAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        },
-        updatedAt: {
-          allowNull: false,
-          defaultValue: Sequelize.literal('NOW()')
-        }
+        
 
       },        
     ]
