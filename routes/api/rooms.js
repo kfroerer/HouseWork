@@ -6,9 +6,6 @@ router.route("/")
   .get(roomController.findAll)
   .post(roomController.create);
 
-// Matches with "/api/rooms/:id/tasks"
-router.route("/:id/tasks").get(roomController.findTasksByRoomId);
-
 // Matches with "/api/rooms/:id"
 router
   .route("/:id")

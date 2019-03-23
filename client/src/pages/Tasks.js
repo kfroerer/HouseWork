@@ -12,6 +12,7 @@ class Task extends Component {
     state = {
         room: {},
         tasks: {},
+        routeId: null,
         title: "",
         owner: "",
         date: "",
@@ -20,26 +21,32 @@ class Task extends Component {
     // When this component mounts, grab the room with the _id of this.props.match.params.id
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc
     componentDidMount() {
-        // API.getRoom(this.props.match.params.id)
-        //     .then(res => this.setState({ room: res.data }))
-        //     .catch(err => console.log(err));
-        let room = rooms.find((room) => {
-            return  (room.id == this.props.match.params.id);
-        });
-        this.setState({room});
+        const routeId = Number(this.props.match.params.id);
+        const room = rooms.find(room => room.id == routeId);
+        this.setState({ room, routeId });
     }
 
-    loadTasks = () => {
+    loadTasks = (newTask) => {
+        const { routeId } = this.state;
+        console.warn('fire load tasks', routeId);
         API.getTasksByRoom(this.props.match.params.id)
-            .then(res =>
-                this.setState({ tasks: res.data, title: "", owner: "", description: "", date: "", frequency: "" })
+            .then(res => {
+                console.warn('load res', res);
+                this.setState({ 
+                    tasks: res.data, 
+                    title: "", 
+                    owner: "", 
+                    description: "", 
+                    date: "", 
+                    frequency: "" 
+                })}
             )
-            .catch(err => console.log(err));
+            .catch(err => console.log('An error has occured', err));
     };
 
     deleteTask = id => {
         API.deleteTask(id)
-            .then(res => this.loadRooms())
+            .then(res => this.loadTasks())
             .catch(err => console.log(err));
     };
 
@@ -52,15 +59,17 @@ class Task extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        const { title, owner, date, frequency, description, room: { id: roomId } } = this.state;
         if (this.state.title && this.state.owner && this.state.date) {
           API.saveTask({
-            title: this.state.title,
-            owner: this.state.owner,
-            date: this.state.date,
-            frequency: this.state.frequency,
-            description: this.state.description
+            title,
+            owner,
+            date,
+            frequency,
+            description,
+            roomId,
           })
-            .then(res => this.loadTasks())
+            .then(({ data }) => this.loadTasks(data))
             .catch(err => console.log(err));
         }
     };
@@ -79,13 +88,13 @@ class Task extends Component {
                 {this.state.tasks.length ? (
                     <List>
                         {this.state.tasks.map(task => (
-                            <ListItem key={task._id}>
-                                <Link to={"/tasks/" + task._id}>
+                            <ListItem key={task.id}>
+                                <Link to={"/tasks/" + task.id}>
                                     <strong>
                                         {task.title} due: {task.date} by {task.owner}
                                     </strong>
                                 </Link>
-                                <DeleteBtn onClick={() => this.deleteTask(task._id)} />
+                                <DeleteBtn onClick={() => this.deleteTask(task.id)} />
                             </ListItem>
                         ))}
                     </List>
