@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Task = sequelize.define("Task", {
+  var task = sequelize.define("Task", {
     status: {
       type: DataTypes.BOOLEAN
     },
@@ -8,21 +8,22 @@ module.exports = function(sequelize, DataTypes) {
     owner: {type: DataTypes.STRING, allowNull: false},
     date: {type: DataTypes.DATE, allowNull: false},
     description: {type: DataTypes.TEXT, allowNull: true},
+    roomId: {type: DataTypes.INTEGER, allowNull: false},
   
   });
 
-  Task.associate = function(models) {
-    Task.belongsTo(models.Room, {
+  task.associate = function(models) {
+    task.belongsTo(models.Room, {
       foreignKey: {
         name: "roomId"
       }
     });
-    Task.belongsToMany(models.House, {
+    task.belongsToMany(models.House, {
        through: "task_house",
        foreignKey: "taskId"
        })
     
   };
 
-  return Task;
+  return task;
 };
