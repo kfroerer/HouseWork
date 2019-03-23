@@ -72,7 +72,7 @@ class Task extends Component {
                 <Jumbotron>
                     <h1>
                         {this.state.room.title} Tasks
-              </h1>
+                    </h1>
                 </Jumbotron>
                 <Link to="/">← Back to Rooms</Link>
                 {/* Chore list begins */}
@@ -127,7 +127,7 @@ class Task extends Component {
                         disabled={!(this.state.owner && this.state.title && this.state.date)}
                         onClick={this.handleFormSubmit}
                     >
-                        Add Chore!
+                        Add Task!
               </FormBtn>
                 </form>
             </Container>
