@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     // });
     Room.hasMany(models.Task, {
       foreignKey: {
-        name: "roomId"
+        name: "taskId"
       },
       onDelete: "cascade"
     });

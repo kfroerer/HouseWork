@@ -29,10 +29,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    // House.hasMany(models.Task, { 
-    //   through: task_house,
-    //   foreignKey: 'houseId'
-    //  })
+    House.belongsToMany(models.Task, { 
+      through: "task_house",
+      foreignKey: 'taskId'
+     })
   };
 
   House.prototype.validatePassword = function(password) {

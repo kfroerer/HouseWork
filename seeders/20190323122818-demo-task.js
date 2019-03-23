@@ -5,39 +5,44 @@ module.exports = {
     return queryInterface.bulkInsert("tasks", [
       {
         status: false,
-        houseId: 1,
         roomId: 1,
         title: "Clean toilet",
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
-        description: "Brush bowl and clean all surfaces"
+        description: "Brush bowl and clean all surfaces",
+        createdAt: Sequelize.DATETIME,
+        updatedAt: Sequelize.DATETIME
+
       },
       {
         status: false,
-        houseId: 1,
         roomId: 2,
         title: "Do Dishes",
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
-        description: "Empty, fill, then run dishwasher"
+        description: "Empty, fill, then run dishwasher",
+        createdAt: Sequelize.DATETIME,
+        updatedAt: Sequelize.DATETIME
       },
       {
         status: false,
-        houseId: 1,
         roomId: 3,
         title: "Dust",
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
-        description: "Dust all hard surfaces"
+        description: "Dust all hard surfaces",
+        createdAt: Sequelize.DATETIME,
+        updatedAt: Sequelize.DATETIME
       },
       {
         status: false,
-        houseId: 1,
         roomId: 4,
         title: "Clean Floor",
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
-        description: "Vacuum or sweep and mop"
+        description: "Vacuum or sweep and mop",
+        createdAt: Sequelize.DATETIME,
+        updatedAt: Sequelize.DATETIME
       },        
     ]
 
