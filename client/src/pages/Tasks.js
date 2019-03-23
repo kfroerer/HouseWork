@@ -30,7 +30,7 @@ class Task extends Component {
     }
 
     loadTasks = () => {
-        API.getTasksByRoom()
+        API.getTasksByRoom(this.props.match.params.id)
             .then(res =>
                 this.setState({ tasks: res.data, title: "", owner: "", description: "", date: "", frequency: "" })
             )
