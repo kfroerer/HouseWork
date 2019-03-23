@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN
     },
     houseId: {type: DataTypes.INTEGER},
+    // roomId: {type: DataTypes.STRING, allowNull: false},
     title: {type: DataTypes.STRING, allowNull: false},
     frequency: {type: DataTypes.STRING, allowNull: true},
     owner: {type: DataTypes.STRING, allowNull: false},
