@@ -28,27 +28,27 @@ app.use(cookieParser());
 
 
 // var secureRoute = require("./routes/apiRoutes");
-// require("./routes/htmlRoutes")(app);
+// require("./routes/api")(app);
 // require("./routes/authRoutes")(app);
 // require("./routes/loginRoutes")(app);
 app.use(routes);
 passport.use(
   new LocalStrategy(
     {
-      nameField: "name",
+      nameField: "username",
       passwordField: "password"
     },
-    function(name, password, cb) {
+    function(username, password, cb) {
       db.House.findOne({
         where: {
-          name: name
+          username: username
         }
       })
         .then(function(user) {
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
-          return cb(null, member, { message: "Logged In Successfully" });
+          return cb(null, house, { message: "Logged In Successfully" });
         })
         .catch(function(error) {
           cb(error);

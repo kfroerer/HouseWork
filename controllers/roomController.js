@@ -1,34 +1,35 @@
 const db = require("../models");
 
-// Defining methods for the HouseController
+// Defining methods for the roomController
 module.exports = {
   findAll: function(req, res) {
-    db.Room.findAll()
+    console.log("db.room is " + db.room);
+    db.room.findAll({})
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.Room.findById(req.params.id)
+    db.room.findById(req.params.id)
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
-  // findTasksByRoomId: function(req, res) {
-  //   db.Room.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     },
-  //     include: [db.Task]
-  //   }).then(function(room) {
-  //     res.json(room.tasks);
-  //   });
-  // },
+  findTasksByRoomId: function(req, res) {
+    db.room.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.task]
+    }).then(function(room) {
+      res.json(room.tasks);
+    });
+  },
   create: function(req, res) {
-    db.Room.create({name: req.body.name})
+    db.room.create({name: req.body.name})
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Room.update(
+    db.room.update(
       {
       name: req.params.name
       },
@@ -40,7 +41,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Room.destroy({
+    db.room.destroy({
       where: {
         id: req.params.id
       }})
