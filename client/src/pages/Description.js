@@ -25,12 +25,11 @@ class Description extends Component {
           </h1>
         </Jumbotron>
         <article>
-          <h1>Description</h1>
           <p>
             {this.state.task.description}
           </p>
         </article>
-        <Link to="/">← Back to Rooms</Link>
+        <Link to="/">← Back to Room</Link>
       </Container>
     );
   }

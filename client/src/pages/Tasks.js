@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn, Date, Frequency} from "../components/Form";
+import { Input, TextArea, FormBtn, Date, Frequency } from "../components/Form";
 import rooms from "../rooms.json";
+import moment from 'moment';
 
 class Task extends Component {
     state = {
@@ -22,8 +23,9 @@ class Task extends Component {
     // e.g. localhost:3000/books/599dcb67f0f16317844583fc
     componentDidMount() {
         const routeId = Number(this.props.match.params.id);
-        const room = rooms.find(room => room.id == routeId);
+        const room = rooms.find(room => room.id === routeId);
         this.setState({ room, routeId });
+        this.loadTasks();
     }
 
     loadTasks = (newTask) => {
@@ -32,14 +34,15 @@ class Task extends Component {
         API.getTasksByRoom(this.props.match.params.id)
             .then(res => {
                 console.warn('load res', res);
-                this.setState({ 
-                    tasks: res.data, 
-                    title: "", 
-                    owner: "", 
-                    description: "", 
-                    date: "", 
-                    frequency: "" 
-                })}
+                this.setState({
+                    tasks: res.data,
+                    title: "",
+                    owner: "",
+                    description: "",
+                    date: "",
+                    frequency: ""
+                })
+            }
             )
             .catch(err => console.log('An error has occured', err));
     };
@@ -61,16 +64,16 @@ class Task extends Component {
         event.preventDefault();
         const { title, owner, date, frequency, description, room: { id: roomId } } = this.state;
         if (this.state.title && this.state.owner && this.state.date) {
-          API.saveTask({
-            title,
-            owner,
-            date,
-            frequency,
-            description,
-            roomId,
-          })
-            .then(({ data }) => this.loadTasks(data))
-            .catch(err => console.log(err));
+            API.saveTask({
+                title,
+                owner,
+                date,
+                frequency,
+                description,
+                roomId,
+            })
+                .then(({ data }) => this.loadTasks(data))
+                .catch(err => console.log(err));
         }
     };
 
@@ -83,7 +86,7 @@ class Task extends Component {
                         {this.state.room.title} Tasks
                     </h1>
                 </Jumbotron>
-                <Link to="/">← Back to Rooms</Link>
+                <Link to="/" style={{ color: "#FF5E00" }}>← Back to Rooms</Link>
                 {/* Chore list begins */}
                 {this.state.tasks.length ? (
                     <List>
@@ -91,7 +94,19 @@ class Task extends Component {
                             <ListItem key={task.id}>
                                 <Link to={"/tasks/" + task.id}>
                                     <strong>
-                                        {task.title} due: {task.date} by {task.owner}
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    {task.title} 
+                                                </div>
+                                                <div class="col-sm">
+                                                    {moment(task.date).startOf('day').fromNow()}
+                                                </div>
+                                                <div class="col-sm">
+                                                    {task.owner}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </strong>
                                 </Link>
                                 <DeleteBtn onClick={() => this.deleteTask(task.id)} />
@@ -99,7 +114,7 @@ class Task extends Component {
                         ))}
                     </List>
                 ) : (
-                        <h3 style = {{paddingTop: "10px", paddingBottom: "10px"}}>Looks Like You Have No Tasks Scheduled Here!</h3>
+                        <h3 style={{ paddingTop: "10px", paddingBottom: "10px" }}>Looks Like You Have No Tasks Scheduled Here!</h3>
                     )}
 
                 {/* form for creating a new task, figuring this should be a modal eventually  */}
