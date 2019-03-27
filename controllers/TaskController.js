@@ -2,19 +2,24 @@ const db = require("../models");
 
 // Defining methods for the TaskController
 module.exports = {
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     db.Task
       .findAll()
       .then((data) => res.json(data))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findById: function (req, res) {
     db.Task
-      .findById(req.params.id)
+      .findOne(
+        {
+          where: {
+            id: req.params.id
+          }
+        })
       .then((data) => res.json(data))
       .catch(err => res.status(422).json(err));
   },
-  findAllByRoomId: function(req, res) {
+  findAllByRoomId: function (req, res) {
     db.Task
       .findAll(
         {
@@ -26,7 +31,7 @@ module.exports = {
       .then((data) => res.json(data))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function (req, res) {
     return db.Task
       .create({
         title: req.body.title,
@@ -40,7 +45,7 @@ module.exports = {
       .then((data) => res.json(data))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  update: function (req, res) {
     db.Task
       .update(
         {
@@ -59,7 +64,7 @@ module.exports = {
       .then((data) => res.json(data))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  remove: function (req, res) {
     db.Task
       .destroy({
         where: {
