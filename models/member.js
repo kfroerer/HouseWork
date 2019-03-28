@@ -1,15 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
-  var Member = sequelize.define("Member",
-    { name: DataTypes.STRING }
-  );
-
-  Member.associate = function(models) {
-    Member.belongsTo(models.House, {
-      foreignKey: {
-        name: 'id'
-      }
-    }); 
+    var Member = sequelize.define("Member", {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+    });
+   
+    return Member;
   };
-
-  return Member;
-};
+  

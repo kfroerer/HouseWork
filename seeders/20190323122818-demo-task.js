@@ -4,42 +4,37 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("tasks", [
       {
-        status: false,
-        roomId: 1,
         title: "Clean toilet",
-        owner: "Member 1",
-        date: "2019-03-23 00:00:00",
+        frequency: "Weekly",
         description: "Brush bowl and clean all surfaces",
-        
+        roomId: 1,
+        status: false,
 
       },
       {
-        status: false,
-        roomId: 2,
         title: "Do Dishes",
-        owner: "Member 1",
-        date: "2019-03-23 00:00:00",
+        frequency: "Daily",
         description: "Empty, fill, then run dishwasher",
+        roomId: 2,
+        status: false,
         
 
       },
       {
-        status: false,
-        roomId: 3,
         title: "Dust",
-        owner: "Member 1",
-        date: "2019-03-23 00:00:00",
+        frequency: "Bi-Weekly",
         description: "Dust all hard surfaces",
+        roomId: 3,
+        status: false,
         
 
       },
       {
-        status: false,
-        roomId: 4,
-        title: "Clean Floor",
-        owner: "Member 1",
-        date: "2019-03-23 00:00:00",
+        title: "Wax Floor",
+        frequency: "Monthly",
         description: "Vacuum or sweep and mop",
+        roomId: 4,
+        status: false,
         
 
       },        

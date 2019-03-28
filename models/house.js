@@ -29,9 +29,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
 
-    House.belongsToMany(models.Task, { 
-      through: "task_house",
-      foreignKey: 'taskId'
+    House.belongsToMany(models.defaultTasks, { 
+      through: models.Task,
+      foreignKey: 'houseId'
      })
   };
 
