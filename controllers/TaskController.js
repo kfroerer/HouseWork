@@ -49,11 +49,11 @@ module.exports = {
     db.Task
       .update(
         {
-          title: req.params.title,
-          frequency: req.params.frequency,
-          owner: req.params.owner,
-          date: req.params.date,
-          description: req.params.description
+          title: req.body.title,
+          frequency: req.body.frequency,
+          owner: req.body.owner,
+          date: req.body.date,
+          description: req.body.description
         },
         {
           where: {

@@ -94,15 +94,15 @@ class Task extends Component {
                             <ListItem key={task.id}>
                                 <Link to={"/tasks/" + task.id}>
                                     <strong>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm">
+                                        <div className="container">
+                                            <div className="row">
+                                                <div className="col-sm">
                                                     {task.title} 
                                                 </div>
-                                                <div class="col-sm">
-                                                    {moment(task.date).startOf('day').fromNow()}
+                                                <div className="col-sm">
+                                                    {moment(task.date).endOf('day').fromNow()}
                                                 </div>
-                                                <div class="col-sm">
+                                                <div className="col-sm">
                                                     {task.owner}
                                                 </div>
                                             </div>
