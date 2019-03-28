@@ -13,7 +13,7 @@ module.exports = {
       .findOne(
         {
           where: {
-            id: req.params.id
+            taskId: req.params.id
           }
         })
       .then((data) => res.json(data))
@@ -57,7 +57,7 @@ module.exports = {
         },
         {
           where: {
-            id: req.params.id
+            taskId: req.params.id
           }
         }
       )
@@ -68,7 +68,7 @@ module.exports = {
     db.Task
       .destroy({
         where: {
-          id: req.params.id
+          taskId: req.params.id
         }
       })
       .then((data) => res.json(data))
