@@ -1,10 +1,13 @@
 const router = require("express").Router();
+const db = require("../../")
 const authController = require("../../controllers/authController");
 
 // Matches with "/api/auth"
 router
   .route("/register")
-  .get(authController.authenticate)
+  //do we need to have this here? house model has auth on it upon create
+  // registering is the same as creating a house
+  // .post(authController.authenticate)
   
 router  
   .route('/login')

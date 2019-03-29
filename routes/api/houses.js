@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const houseController = require("../../controllers/houseController");
 
-// Matches with "/api/books"
+// Matches with "/api/house"
 router
-  .route("/")
-  .get(houseController.findAll)
+  .route("/register")
+  // .get(houseController.findAll)
   .post(houseController.create);
-
-// Matches with "/api/books/:id"
+//we need to fix this because the id won't be shown....
+// house will be passed through as a header
+// Matches with "/api/house/:id"
 router
   .route("/:id")
   .get(houseController.findById)

@@ -17,7 +17,7 @@ export default class Login extends Component {
   validateForm() {
     return this.state.username.length > 0 && this.state.email.length > 0 && this.state.password.length > 0 ;
   }
-
+//not sure on handle change....
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -26,6 +26,7 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
     //api authenticate user
     this.props.history.push("/")
 

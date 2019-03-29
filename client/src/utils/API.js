@@ -1,6 +1,13 @@
 import axios from "axios";
 
 export default {
+  createHouse: () => {
+    return axios.post("/api/auth/register")
+  },
+  //not sure how to do this with the auth
+  // loginHouse: (id) => {
+  //   return axios.get(`/api/house/ + ${id}`)
+  // },
   // Gets all rooms
   getRooms: function() {
     return axios.get("/api/rooms");

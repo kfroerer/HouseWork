@@ -5,6 +5,7 @@ import Description from "./pages/Description";
 import Tasks from "./pages/Tasks";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Landing from './pages/landing';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Rooms} />
+          <Route exact path="/" component={Landing} />
           <Route exact path="/rooms" component={Rooms} />
           <Route exact path="/rooms/:id" component={Tasks} />
           <Route exact path="/tasks/:id" component={Description} />
