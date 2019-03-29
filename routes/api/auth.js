@@ -3,7 +3,7 @@ const authController = require("../../controllers/authController");
 
 // Matches with "/api/auth"
 router
-  .route("/signup")
+  .route("/register")
   .get(authController.authenticate)
   
 router  
