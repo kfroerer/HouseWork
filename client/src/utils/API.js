@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   createHouse: () => {
-    return axios.post("/api/auth/register")
+    return axios.post("/api/house/register")
   },
   //not sure how to do this with the auth
   // loginHouse: (id) => {
@@ -25,12 +25,39 @@ export default {
     return axios.post("/api/rooms", roomData);
   },
   // Gets all tasks for a specific room ID
+
+  // will it work this way???
   getTasksByRoom: function(roomID) {
-    return axios.get("/api/tasks/" + roomID + "/room");
+    var token = document.cookie
+      .split(";")
+      .filter(function(element) {
+        return element.indexOf("token=") === 0;
+      })[0]
+      .split("=")[1];
+    return axios({
+      url: "/api/tasks" + roomID + "/room",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
   },
   // Gets the task with the given id
   getTask: function(id) {
-    return axios.get("/api/tasks/" + id);
+      var token = document.cookie
+      .split(";")
+      .filter(function(element) {
+        return element.indexOf("token=") === 0;
+      })[0]
+      .split("=")[1];
+    return axios({
+      url: "/api/tasks" + id,
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+    
   },
   // Deletes the task with the given id
   deleteTask: function(id) {

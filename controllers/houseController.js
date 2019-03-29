@@ -10,10 +10,22 @@ module.exports = {
   },
 
   findById: function(req, res) {
-    db.house
-      .findById(req.params.id)
-      .then(res => res.json(res))
-      .catch(err => res.status(422).json(err));
+    if (req.cookies.token) {
+      let house = jwt.verify(req.cookies.token, "your_jwt_secret");
+      if (house) {
+        db.house.findOne(
+          {
+            where: {
+              id: house.id
+            },
+            //do we need this?
+            include: [db.Room]
+          }
+        )
+        .then(res => res.json(res))
+        .catch(err => res.status(422).json(err));
+      }
+    }
   },
   create: function(req, res) {
     db.house
@@ -25,7 +37,7 @@ module.exports = {
          .then((house) => {
            db.defaultTasks.findAll().then((tasks) => {
               tasks.map((task) => {
-                house.adddefaultTasks(task,
+                house.addDefaultTasks(task,
                   {
                     through: {
                       status: false,
@@ -36,12 +48,13 @@ module.exports = {
               })
            })
          })
-         //not sure what to return here....
-         return res.json(Tasks)
+         //not sure what to return here....//want to reroute to rooms view
+         return res.json(house)
 
       // .then(res => res.json(res))
-      // .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err));
   },
+
   update: function(req, res) {
     db.house
       .update(
