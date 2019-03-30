@@ -3,9 +3,6 @@ const authController = require("../../controllers/authController");
 
 // Matches with "/api/auth"
 router
-  .route("/signup")
-  .get(authController.authenticate)
+  .route("/auth")
+  .post(authController.authenticate)
   
-router  
-  .route('/login')
-  .get(authController.authenticate)
