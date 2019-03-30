@@ -25,7 +25,11 @@ module.exports = {
         {
           where: {
             roomId: req.params.id
-          }
+          }, 
+          // Order the results by date
+          order: [
+            ['date', 'ASC']
+          ]
         }
       )
       .then((data) => res.json(data))
@@ -53,7 +57,8 @@ module.exports = {
           frequency: req.body.frequency,
           owner: req.body.owner,
           date: req.body.date,
-          description: req.body.description
+          description: req.body.description,
+          status: req.body.status
         },
         {
           where: {

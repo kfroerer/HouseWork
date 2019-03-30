@@ -14,7 +14,8 @@ class Description extends Component {
     owner: "",
     date: "",
     frequency: "",
-    description: ""
+    description: "",
+    status: false
   };
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
@@ -22,8 +23,8 @@ class Description extends Component {
     API.getTask(this.props.match.params.id)
       .then(res => {
         this.setState({ task: res.data });
-        const { title, owner, date, frequency, description, roomId } = this.state.task;
-        this.setState({ title, owner, date, frequency, description, roomId });
+        const { title, owner, date, frequency, description, roomId, status} = this.state.task;
+        this.setState({ title, owner, date, frequency, description, roomId, status});
       })
       .catch(err => console.log(err));
   }
@@ -34,6 +35,29 @@ class Description extends Component {
       [name]: value
     });
   };
+
+  completeTask = () => {
+    let newDate;
+    let completeStatus;
+    if (this.state.frequency === "Daily") {
+      newDate = moment(this.state.date).add(1, 'day').format('YYYY-MM-DD');
+    } else if (this.state.frequency === "Weekly") {
+      newDate = moment(this.state.date).add(7, 'day').format('YYYY-MM-DD');
+    } else if (this.state.frequency === "Bi-Weekly") {
+      newDate = moment(this.state.date).add(14, 'day').format('YYYY-MM-DD');
+    } else if (this.state.frequency === "Monthly") {
+      newDate = moment(this.state.date).add(1, 'month').format('YYYY-MM-DD');
+    } else if (this.state.frequency === "Annually") {
+      newDate = moment(this.state.date).add(1, 'year').format('YYYY-MM-DD');
+    } else {
+      completeStatus = true;
+    }
+    API.updateTask(this.state.task.id, {
+      status: completeStatus,
+      date: newDate
+    })
+    .then(window.location.reload());
+  }
 
   handleFormSubmit = event => {
     const { title, owner, date, frequency, description } = this.state;
@@ -50,6 +74,7 @@ class Description extends Component {
   };
 
   render() {
+    const isComplete = this.state.status;
     return (
       <Container fluid>
         <Jumbotron>
@@ -69,8 +94,14 @@ class Description extends Component {
             <li className="list-group-item">Due {moment(this.state.task.date).endOf('day').fromNow()}</li>
             <li className="list-group-item">Date: {moment(this.state.task.date).format('LL')}</li>
             <li className="list-group-item">Owned By {this.state.task.owner}</li>
+            <li className="list-group-item">This Task is {(!isComplete) ? (
+              "Reoccuring"
+            ) : (
+              "Complete"
+            )}</li>
           </ul>
           <div className="card-body">
+            <button type="button" onClick={this.completeTask} className="btn btn-light" id="complete" style={{ backgroundColor: "#00cccc", color: "white" }}>Complete!</button>
             <button type="button" className="btn btn-light" data-toggle="modal" data-target="#modal-edit" id="editTaskbtn" style={{ float: "right", backgroundColor: "#FF5E00", color: "white" }}>Edit Task</button>
           </div>
         </div>

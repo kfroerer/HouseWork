@@ -34,7 +34,7 @@ export function Frequency(props) {
       <label htmlFor="freqOptions">Frequency:</label>
       <select className="form-control" id="freqOptions" {...props}>
         <option value= "Daily">Daily</option>
-        <option value= "Weeklyu">Weekly</option>
+        <option value= "Weekly">Weekly</option>
         <option value= "Bi-Weekly">Bi-Weekly</option>
         <option value= "Monthly">Monthly</option>
         <option value= "Annually">Annually</option>
