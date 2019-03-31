@@ -1,4 +1,58 @@
+const db = require("../models");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const JWTStrategy = require("passport-jwt").Strategy;
+const ExtractJWT = require("passport-jwt").ExtractJwt;
+
+passport.use(
+  new LocalStrategy(
+    {
+      nameField: "username",
+      passwordField: "password"
+    },
+    function(username, password, cb) {
+      db.House.findOne({
+        where: {
+          username: username
+        }
+      })
+        .then(function(user) {
+          if (!house || !house.validatePassword(password)) {
+            return cb(null, false, { message: "Incorrect name or password." });
+          }
+          return cb(null, house, { message: "Logged In Successfully" });
+        })
+        .catch(function(error) {
+          cb(error);
+          throw error;
+        });
+    }
+  )
+);
+
+passport.use(
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      secretOrKey: "your_jwt_secret"
+    },
+    function(jwtPayload, done) {
+      
+      //find the user in db if needed
+      try {
+        return done(null, jwtPayload);
+      } catch (error) {
+        console.log(error);
+
+        done(error);
+      }
+    }
+  )
+);
+
+
 module.exports = {
+
 authenticate: function (request, response) {
     passport.authenticate("local", { session: false }, function(
       error,
