@@ -15,6 +15,8 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
+console.log("env", process.env.NODE_ENV);
+
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
 // }
@@ -27,57 +29,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-// var secureRoute = require("./routes/apiRoutes");
+var secureRoute = require("./routes/api");
 // require("./routes/api")(app);
-// require("./routes/authRoutes")(app);
+// require("./routes/auth")(app);
 // require("./routes/loginRoutes")(app);
 app.use(routes);
-passport.use(
-  new LocalStrategy(
-    {
-      nameField: "username",
-      passwordField: "password"
-    },
-    function(username, password, cb) {
-      db.House.findOne({
-        where: {
-          username: username
-        }
-      })
-        .then(function(user) {
-          if (!house || !house.validatePassword(password)) {
-            return cb(null, false, { message: "Incorrect name or password." });
-          }
-          return cb(null, house, { message: "Logged In Successfully" });
-        })
-        .catch(function(error) {
-          cb(error);
-          throw error;
-        });
-    }
-  )
-);
 
-passport.use(
-  new JWTStrategy(
-    {
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-      secretOrKey: "your_jwt_secret"
-    },
-    function(jwtPayload, done) {
-      //find the user in db if needed
-      try {
-        return done(null, jwtPayload);
-      } catch (error) {
-        console.log(error);
 
-        done(error);
-      }
-    }
-  )
-);
-
-// app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
+app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
 
 var syncOptions = { force: false };
 
