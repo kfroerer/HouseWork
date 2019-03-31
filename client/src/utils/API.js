@@ -36,6 +36,8 @@ export default {
   },
   // Updates a task by id to the database
   updateTask: function(id, taskData) {
-    return axios.post("/api/tasks/" + id, taskData);
+    console.log(taskData)
+    console.log(id)
+    return axios.put("/api/tasks/" + id, taskData);
   }
 };

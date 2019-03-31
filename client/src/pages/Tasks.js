@@ -86,23 +86,23 @@ class Task extends Component {
                         {this.state.room.title} Tasks
                     </h1>
                 </Jumbotron>
-                <Link to="/" style={{ color: "#FF5E00" }}>← Back to Rooms</Link>
+                <Link to="/rooms" style={{ color: "#FF5E00" }}>← Back to Rooms</Link>
                 {/* Chore list begins */}
                 {this.state.tasks.length ? (
                     <List>
-                        {this.state.tasks.map(task => (
+                        {this.state.tasks.map(task => (                            
                             <ListItem key={task.id}>
                                 <Link to={"/tasks/" + task.id}>
                                     <strong>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm">
+                                        <div className="container" style={{backgroundColor: ""}}>
+                                            <div className="row">
+                                                <div className="col-sm">
                                                     {task.title} 
                                                 </div>
-                                                <div class="col-sm">
-                                                    {moment(task.date).startOf('day').fromNow()}
+                                                <div className="col-sm">
+                                                    {moment(task.date).endOf('day').fromNow()}
                                                 </div>
-                                                <div class="col-sm">
+                                                <div className="col-sm">
                                                     {task.owner}
                                                 </div>
                                             </div>
