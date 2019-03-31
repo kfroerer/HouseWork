@@ -4,12 +4,12 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     console.log("db.room is " + db.room);
-    db.room.findAll({})
+    db.Room.findAll({})
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.room.findById(req.params.id)
+    db.Room.findById(req.params.id)
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
@@ -25,12 +25,12 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    db.room.create({name: req.body.name})
+    db.Room.create({name: req.body.name})
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.room.update(
+    db.Room.update(
       {
       name: req.params.name
       },
@@ -42,7 +42,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.room.destroy({
+    db.Room.destroy({
       where: {
         id: req.params.id
       }})
