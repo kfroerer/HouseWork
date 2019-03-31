@@ -6,3 +6,4 @@ router
   .route("/auth")
   .post(authController.authenticate)
   
+module.exports = router;

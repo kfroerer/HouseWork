@@ -7,7 +7,7 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 passport.use(
   new LocalStrategy(
     {
-      nameField: "username",
+      usernameField: "username",
       passwordField: "password"
     },
     function(username, password, cb) {
@@ -16,7 +16,7 @@ passport.use(
           username: username
         }
       })
-        .then(function(user) {
+        .then(function(house) {
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
