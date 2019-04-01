@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const authController = require("../controllers/authController");
+const authController = require("../../controllers/authController");
 
 // Matches with "/api/auth"
 router
-  .route("/auth")
+  .route("/")
   .post(authController.authenticate)
   
 module.exports = router;

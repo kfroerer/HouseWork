@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+  authUser: () => {
+    return axios.post("/auth")
+  },
   // Gets all rooms
   getRooms: function() {
     return axios.get("/api/rooms");
