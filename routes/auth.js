@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const authController = require("../../controllers/authController");
+const authController = require("../controllers/authController");
 
-// Matches with "/api/auth"
 router
   .route("/")
   .post(authController.authenticate)

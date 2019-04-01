@@ -11,6 +11,7 @@ const LocalStrategy = require("passport-local");
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -65,7 +66,7 @@ passport.use(
       secretOrKey: "your_jwt_secret"
     },
     function(jwtPayload, done) {
-      
+     
       //find the user in db if needed
       try {
         return done(null, jwtPayload);
@@ -78,14 +79,14 @@ passport.use(
   )
 );
 
-// var secureRoute = require("./routes/api");
+var secureRoute = require("./routes/api");
 // require("./routes/api")(app);
 // require("./routes/auth")(app);
 // require("./routes/loginRoutes")(app);
 app.use(routes);
 
 
-// app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
+app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
 
 var syncOptions = { force: false };
 

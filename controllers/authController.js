@@ -3,6 +3,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
+const jwt = require('jsonwebtoken');
 
 
 
@@ -29,11 +30,13 @@ authenticate: function (request, response) {
         var sanitizedHouse = {
           house: house.id,
           username: house.username,
+          email: house.email
         };
         console.log(sanitizedHouse);
         // generate a signed son web token with the contents of user object and return it in the response
-        var token = jwt.sign(sanitizedHouse, "your_jwt_secret");
+        const token = jwt.sign(sanitizedHouse, "your_jwt_secret");
         response.json({
+          house: sanitizedHouse,
           token: token
         });
       });
