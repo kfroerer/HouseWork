@@ -9,6 +9,26 @@ import { Input, TextArea, FormBtn, Date, Frequency } from "../components/Form";
 import rooms from "../rooms.json";
 import moment from 'moment';
 
+const setTaskStyling = ({ date }) => {
+    const now = new Date;
+    const dueAlert = moment.duration({ from: now, to: date }).asHours();
+    if (dueAlert < 0) {
+        return { backgroundColor: '#FF5E0080', border: 'none', paddingTop: '10px'};
+    } else if (dueAlert < 24) {
+        return { backgroundColor: '#FFBB0080', border: 'none', paddingTop: '10px'};
+    }
+    return { backgroundColor: '#00CCCC80', border: 'none', paddingTop: '10px'};
+}
+
+const setFontStyling = ({ date }) => {
+    const now = new Date;
+    const dueAlert = moment.duration({ from: now, to: date }).asHours();
+    if (dueAlert < 24) {
+        return { color: 'white' };
+    } 
+    return { color: 'white' };
+}
+
 class Task extends Component {
     state = {
         room: {},
@@ -28,12 +48,9 @@ class Task extends Component {
         this.loadTasks();
     }
 
-    loadTasks = (newTask) => {
-        const { routeId } = this.state;
-        console.warn('fire load tasks', routeId);
+    loadTasks = () => {
         API.getTasksByRoom(this.props.match.params.id)
             .then(res => {
-                console.warn('load res', res);
                 this.setState({
                     tasks: res.data,
                     title: "",
@@ -42,8 +59,7 @@ class Task extends Component {
                     date: "",
                     frequency: ""
                 })
-            }
-            )
+            })
             .catch(err => console.log('An error has occured', err));
     };
 
@@ -77,10 +93,78 @@ class Task extends Component {
         }
     };
 
+    mapTasks = () => this.state.tasks.map(task => (
+        <ListItem key={task.id}>
+            <strong>
+                <div className="card" style={setTaskStyling(task)}>
+                    <div className="container">
+                        <div className="col-sm-10">
+                            <Link to={"/tasks/" + task.id}>
+                                <div className="row" style={setFontStyling(task)}>
+                                    <div className="col-sm">
+                                        {task.title}
+                                    </div>
+                                    <div className="col-sm" >
+                                        {moment(task.date).endOf('day').fromNow()}
+                                    </div>
+                                    <div className="col-sm">
+                                        {task.owner}
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="col-sm-2" >
+                            <DeleteBtn onClick={() => this.deleteTask(task.id)} />
+                        </div>
+                    </div>
+                </div>
+            </strong>
+
+        </ListItem>
+    ))
+
+    renderForm = () => (
+        <form>
+            <Input
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                name="title"
+                placeholder="Task Name (required)"
+            />
+            <Input
+                value={this.state.owner}
+                onChange={this.handleInputChange}
+                name="owner"
+                placeholder="Owner (required)"
+            />
+            <Date
+                value={this.state.date}
+                onChange={this.handleInputChange}
+                name="date"
+            />
+            <Frequency
+                value={this.state.frequency}
+                onChange={this.handleInputChange}
+                name="frequency"
+            />
+            <TextArea
+                value={this.state.synopsis}
+                onChange={this.handleInputChange}
+                name="description"
+                placeholder="Description (Optional)"
+            />
+            <FormBtn
+                disabled={!(this.state.owner && this.state.title && this.state.date)}
+                onClick={this.handleFormSubmit}
+            >
+                Add Task!
+            </FormBtn>
+        </form>
+    )
+
     render() {
         return (
             <Container fluid>
-
                 <Jumbotron>
                     <h1>
                         {this.state.room.title} Tasks
@@ -90,70 +174,14 @@ class Task extends Component {
                 {/* Chore list begins */}
                 {this.state.tasks.length ? (
                     <List>
-                        {this.state.tasks.map(task => (                            
-                            <ListItem key={task.id}>
-                                <Link to={"/tasks/" + task.id}>
-                                    <strong>
-                                        <div className="container" style={{backgroundColor: ""}}>
-                                            <div className="row">
-                                                <div className="col-sm">
-                                                    {task.title} 
-                                                </div>
-                                                <div className="col-sm">
-                                                    {moment(task.date).endOf('day').fromNow()}
-                                                </div>
-                                                <div className="col-sm">
-                                                    {task.owner}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </strong>
-                                </Link>
-                                <DeleteBtn onClick={() => this.deleteTask(task.id)} />
-                            </ListItem>
-                        ))}
+                        {this.mapTasks()}
                     </List>
                 ) : (
                         <h3 style={{ paddingTop: "10px", paddingBottom: "10px" }}>Looks Like You Have No Tasks Scheduled Here!</h3>
                     )}
 
                 {/* form for creating a new task, figuring this should be a modal eventually  */}
-                <form>
-                    <Input
-                        value={this.state.title}
-                        onChange={this.handleInputChange}
-                        name="title"
-                        placeholder="Task Name (required)"
-                    />
-                    <Input
-                        value={this.state.owner}
-                        onChange={this.handleInputChange}
-                        name="owner"
-                        placeholder="Owner (required)"
-                    />
-                    <Date
-                        value={this.state.date}
-                        onChange={this.handleInputChange}
-                        name="date"
-                    />
-                    <Frequency
-                        value={this.state.frequency}
-                        onChange={this.handleInputChange}
-                        name="frequency"
-                    />
-                    <TextArea
-                        value={this.state.synopsis}
-                        onChange={this.handleInputChange}
-                        name="description"
-                        placeholder="Description (Optional)"
-                    />
-                    <FormBtn
-                        disabled={!(this.state.owner && this.state.title && this.state.date)}
-                        onClick={this.handleFormSubmit}
-                    >
-                        Add Task!
-              </FormBtn>
-                </form>
+                {this.renderForm()}
             </Container>
         );
     }
