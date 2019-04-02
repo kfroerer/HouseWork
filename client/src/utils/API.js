@@ -6,7 +6,12 @@ export default {
   },
   // Gets all rooms
   getRooms: function() {
-    return axios.get("/api/rooms");
+    let token = this.getCookie('token');
+    return axios.get("/api/rooms",
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }      
+    );
   },
   // Gets the room with the given id
   getRoom: function(id) {
@@ -22,7 +27,12 @@ export default {
   },
   // Gets all tasks for a specific room ID
   getTasksByRoom: function(roomID) {
-    return axios.get("/api/tasks/" + roomID + "/room");
+    let token = this.getCookie('token');
+    return axios.get("/api/tasks/" + roomID + "/room",
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }  
+    );
   },
   // Gets the task with the given id
   getTask: function(id) {
@@ -34,13 +44,28 @@ export default {
   },
   // Saves a task to the database
   saveTask: function(taskData) {
+    let token = this.getCookie('token');
     console.log(taskData);
-    return axios.post("/api/tasks", taskData);
+    return axios.post("/api/tasks", taskData,
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }  
+    );
   },
   // Updates a task by id to the database
   updateTask: function(id, taskData) {
+    let token = this.getCookie('token');
     console.log(taskData)
     console.log(id)
-    return axios.put("/api/tasks/" + id, taskData);
+    return axios.put("/api/tasks/" + id, taskData,
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }  
+    );
+  },
+  getCookie:function(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
   }
 };
