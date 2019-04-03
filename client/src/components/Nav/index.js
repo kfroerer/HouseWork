@@ -17,16 +17,20 @@ function handleSend(e){
       }
   }).then((response)=>{
       if (response.data.msg === 'success'){
-          alert("Message Sent."); 
+          document.getElementById('sentStatus').innerHTML = "Email Sent!"
           resetForm()
       }else if(response.data.msg === 'fail'){
-          alert("Message failed to send.")
+          document.getElementById('sentStatus').innerHTML = "Email Failed to Send..."
       }
   })
 }
 
 function resetForm(){
   document.getElementById('contact-form').reset();
+}
+
+function resetSend() {
+  document.getElementById('sentStatus').innerHTML = " "
 }
 
 function Nav() {
@@ -109,11 +113,14 @@ function Nav() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Invite Your House To Join!</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" onClick={resetSend} className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
+              <div>
+                <h3 id="sentStatus"> </h3>
+              </div>
               <form id="contact-form" onSubmit={handleSend.bind(this)} method="POST">
                 <div className="form-group">
                   <label htmlFor="name">Name</label>
