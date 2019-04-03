@@ -10,7 +10,7 @@ import rooms from "../rooms.json";
 import moment from 'moment';
 
 const setTaskStyling = ({ date }) => {
-    const now = new Date;
+    const now = new Date();
     const dueAlert = moment.duration({ from: now, to: date }).asHours();
     if (dueAlert < 0) {
         return { backgroundColor: '#FF5E0080', border: 'none', paddingTop: '10px'};
@@ -21,7 +21,7 @@ const setTaskStyling = ({ date }) => {
 }
 
 const setFontStyling = ({ date }) => {
-    const now = new Date;
+    const now = new Date();
     const dueAlert = moment.duration({ from: now, to: date }).asHours();
     if (dueAlert < 24) {
         return { color: 'white' };

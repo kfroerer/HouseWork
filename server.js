@@ -44,7 +44,7 @@ passport.use(
           username: username
         }
       })
-        .then(function(user) {
+        .then(function(house) {
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
