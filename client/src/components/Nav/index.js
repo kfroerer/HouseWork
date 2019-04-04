@@ -132,7 +132,7 @@ function Nav() {
                   <label htmlFor="message">Message</label>
                   <textarea className="form-control" rows="5" id="message"></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" id="enter" className="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
