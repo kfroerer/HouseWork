@@ -17,10 +17,7 @@ export default class Register extends Component {
         authenticated: false
       };
     }
-    // routeChange () {
-    //   let path = '/login';
-    //   this.props.history.push(path);
-    // }
+    
 
     validateForm () {
         return this.state.email.length > 0 && this.state.password.length > 0;
@@ -32,21 +29,17 @@ export default class Register extends Component {
         });
     };
 
-    handleRegister = event => {
+    handleRegister = async event => {
       event.preventDefault();
       const {username, email, password } = this.state;
-     
+      const { history } = this.props;
       API.createHouse({
           username,
           email,
           password
-      }).then(
-               
-        //route to login page
-        //this.routeChange();
-          
-      )
-  }
+      }).then(history.push('/login'))
+      .catch(err => console.log('Registration failed!', err));     
+     }
 
     render() {
         return (

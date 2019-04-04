@@ -41,7 +41,7 @@ render () {
             authenticated ? (<Redirect to="/rooms"/> ) : ( <Landing />)
           )}
         />
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/register" render={() => (<Register history={history}/>)}/>
           <Route exact path="/login" render={() => (<Login history={history} isAuthenticated={this.isAuthenticated} />)} />
           <Route exact path="/rooms" component={Rooms} />
           <Route exact path="/rooms/:id" component={Tasks} />

@@ -64,9 +64,11 @@ export default class Login extends Component {
             Register 
           </Button>
           </Link>
+          <Link to="/login">
           <Button variant="outline-primary" size="lg">
             Login
           </Button>
+          </Link>
         </ButtonToolbar>
         </div>
 

@@ -31,7 +31,6 @@ export default class Login extends Component {
       event.preventDefault();
       const {username, password} = this.state;
       const { isAuthenticated, history } = this.props;
-      const body = { username, password };
       API.authUser({ username, password, history })
         .then(data => data.data)
         .then(data => {
