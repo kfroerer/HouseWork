@@ -24,7 +24,8 @@ module.exports = {
       .findAll(
         {
           where: {
-            roomId: req.params.id
+            roomId: req.params.id,
+            status: 0
           }, 
           // Order the results by date
           order: [
@@ -44,6 +45,7 @@ module.exports = {
         date: req.body.date,
         description: req.body.description,
         roomId: req.body.roomId,
+        status: false
 
       })
       .then((data) => res.json(data))

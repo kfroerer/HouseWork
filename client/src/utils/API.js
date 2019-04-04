@@ -1,5 +1,5 @@
 import axios from "axios";
-const Cookie = require('js-cookie');
+import Cookie from 'js-cookie';
 
 export default {
   authUser: (body) => {

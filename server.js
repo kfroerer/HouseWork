@@ -44,8 +44,6 @@ passport.use(
         }
       })
         .then(function(house) {
-          console.log("****User local")
-
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
