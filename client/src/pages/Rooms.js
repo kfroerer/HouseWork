@@ -57,7 +57,7 @@ class Rooms extends Component {
     return (
       <Container fluid>
         <Jumbotron>
-          <h1>Pick A Room!</h1>
+          <h1>PICK A ROOM!</h1>
         </Jumbotron>
 
         {/* Room Display */}
