@@ -62,7 +62,7 @@ class Rooms extends Component {
 
         {/* Room Display */}
         {this.state.rooms.map(room => (
-          <Link to={"/rooms/" + room.id}>
+          <Link key={room.id} to={"/rooms/" + room.id}>
             <Room
               cardClicked={this.cardClicked}
               id={room.id}
