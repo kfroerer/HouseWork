@@ -1,7 +1,6 @@
 const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
-<<<<<<< HEAD
 const creds = require("../config/emailConfig");
 
 var express = require('express');
@@ -52,12 +51,10 @@ router.post('/send', (req, res, next) => {
   })
 })
 
-=======
 const authRoutes = require("./auth");
 const passport = require("passport");
 const rooms = require("./api/rooms");
 const tasks = require("./api/tasks");
->>>>>>> 1822aa18bc22faae1568605d4712980fa44c9f74
 // API Routes
 router.use("/api",  passport.authenticate("jwt", { session: false }), apiRoutes);
 router.use("/auth", authRoutes);

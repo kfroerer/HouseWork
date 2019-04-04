@@ -44,11 +44,6 @@ passport.use(
         }
       })
         .then(function(house) {
-<<<<<<< HEAD
-=======
-          console.log("****User local")
-
->>>>>>> 1822aa18bc22faae1568605d4712980fa44c9f74
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
