@@ -10,8 +10,7 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Brush bowl and clean all surfaces",
-        createdAt: Sequelize.DATETIME,
-        updatedAt: Sequelize.DATETIME
+        
 
       },
       {
@@ -21,8 +20,8 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Empty, fill, then run dishwasher",
-        createdAt: Sequelize.DATETIME,
-        updatedAt: Sequelize.DATETIME
+        
+
       },
       {
         status: false,
@@ -31,8 +30,8 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Dust all hard surfaces",
-        createdAt: Sequelize.DATETIME,
-        updatedAt: Sequelize.DATETIME
+        
+
       },
       {
         status: false,
@@ -41,8 +40,8 @@ module.exports = {
         owner: "Member 1",
         date: "2019-03-23 00:00:00",
         description: "Vacuum or sweep and mop",
-        createdAt: Sequelize.DATETIME,
-        updatedAt: Sequelize.DATETIME
+        
+
       },        
     ]
 
