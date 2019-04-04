@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
 
 authenticate: function (request, response) {
+  console.log('backend', request.body)
     passport.authenticate("local", { session: false }, function(
       error,
       house,
@@ -28,9 +29,8 @@ authenticate: function (request, response) {
           response.send(error);
         }
         var sanitizedHouse = {
-          house: house.id,
           username: house.username,
-          email: house.email
+          password: house.passowrd
         };
         console.log(sanitizedHouse);
         // generate a signed son web token with the contents of user object and return it in the response

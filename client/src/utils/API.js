@@ -2,9 +2,14 @@ import axios from "axios";
 const Cookie = require('js-cookie');
 
 export default {
-  authUser: () => {
-
-    return axios.post("/auth")
+  authUser: (body) => {
+    return axios.post("/auth", {
+      username: body.username,
+      password: body.password,
+    })
+  },
+  createHouse: (houseData) => {
+    return axios.post("/house", houseData)
   },
   // Gets all rooms
   getRooms: function() {
