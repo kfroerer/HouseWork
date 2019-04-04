@@ -16,11 +16,9 @@ const ExtractJWT = require("passport-jwt").ExtractJwt;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-console.log("env", process.env.NODE_ENV);
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // Add routes, both API and view
 app.use(passport.initialize());
 app.use(passport.session());
