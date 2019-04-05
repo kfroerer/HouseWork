@@ -16,7 +16,7 @@ module.exports = {
   },
   create: function(req, res) {
     db.member
-      .create({ name: req.body.name })
+      .create({ name: req.body.newMemberName })
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
   },

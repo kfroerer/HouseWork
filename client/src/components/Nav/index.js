@@ -41,10 +41,8 @@ function Nav() {
       >
         HouseWork
       </a>
-      <button className="btn btn-light" data-toggle="modal" data-target="#modal-invite" id="invite" style={{ float: "left" }}>E</button>
       <div id="loginSignUp" style={{ float: "right" }}>
-        <button className="btn btn-light" data-toggle="modal" data-target="#modal-log-in" id="logInBtn" style={{ float: "right", marginLeft: "3px"}}>Log In</button>
-        <button className="btn btn-light" data-toggle="modal" data-target="#modal-sign-up" id="signUpBtn" style={{ float: "left" }}>Sign Up</button>
+        <button className="btn btn-light" data-toggle="modal" data-target="#modal-invite" id="invite" style={{ float: "left" }}>Invite Your House Mates!</button>
       </div>
 
       {/* modal to sign up */}
@@ -134,7 +132,7 @@ function Nav() {
                   <label htmlFor="message">Message</label>
                   <textarea className="form-control" rows="5" id="message"></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" id="enter" className="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>

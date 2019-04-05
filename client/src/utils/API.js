@@ -100,6 +100,15 @@ export default {
       }  
     );
   },
+  saveMember: function(memberData) {
+    let token = Cookie.get('token');
+    console.log(memberData);
+    return axios.post("/api/members", memberData,
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }  
+    );
+  },
  
 };
 
