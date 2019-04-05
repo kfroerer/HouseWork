@@ -124,12 +124,15 @@ class Task extends Component {
     ))
 
     renderForm = () => (
+        
         <form>
+            <label htmlFor="taskName">Create New Task:</label>
             <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
                 name="title"
                 placeholder="Task Name (required)"
+                id="taskName"
             />
             <Input
                 value={this.state.owner}
@@ -167,7 +170,7 @@ class Task extends Component {
             <Container fluid>
                 <Jumbotron>
                     <h1>
-                        {this.state.room.title} Tasks
+                        {this.state.room.title} TASKS
                     </h1>
                 </Jumbotron>
                 <Link to="/rooms" style={{ color: "#FF5E00" }}>← Back to Rooms</Link>

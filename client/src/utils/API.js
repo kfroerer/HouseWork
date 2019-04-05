@@ -2,9 +2,14 @@ import axios from "axios";
 import Cookie from 'js-cookie';
 
 export default {
-  authUser: () => {
-
-    return axios.post("/auth")
+  authUser: (body) => {
+    return axios.post("/auth", {
+      username: body.username,
+      password: body.password,
+    })
+  },
+  createHouse: (houseData) => {
+    return axios.post("/house", houseData)
   },
   // Gets all rooms
   getRooms: function() {
@@ -90,6 +95,15 @@ export default {
     console.log(taskData)
     console.log(id)
     return axios.put("/api/tasks/" + id, taskData,
+      {headers: 
+        {"Authorization":  `Bearer ${token}`}
+      }  
+    );
+  },
+  saveMember: function(memberData) {
+    let token = Cookie.get('token');
+    console.log(memberData);
+    return axios.post("/api/members", memberData,
       {headers: 
         {"Authorization":  `Bearer ${token}`}
       }  
