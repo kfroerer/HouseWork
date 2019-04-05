@@ -10,6 +10,7 @@ import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Landing from "./pages/Landing";
+// import StyledLogin from "./pages/StyledLogin";
 
 const history = createBrowserHistory();
 

@@ -79,7 +79,7 @@ export default class Login extends Component {
                 block
                 bsSize="large"
                 // disabled={!this.validateForm()}
-                type="submit"
+                type="submit" style={{ background: "#00cccc"}}
               >
                 Login
               </Button>
