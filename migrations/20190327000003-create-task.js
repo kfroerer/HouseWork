@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Task', {
+    return queryInterface.createTable('Tasks', {
       houseId: Sequelize.INTEGER,
       taskId: Sequelize.INTEGER,
       status: {
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Task');
+    return queryInterface.dropTable('Tasks');
   }
 };
