@@ -1,13 +1,13 @@
 const router = require("express").Router();
-const houseController = require("../../controllers/houseController");
+const houseController = require("../controllers/houseController");
 
-// Matches with "/api/house"
+// Matches with "/house"
 router
   .route("/")
   .get(houseController.findAll)
   .post(houseController.create);
 
-// Matches with "/api/house/:id"
+// Matches with "/house/:id"
 router
   .route("/:id")
   .get(houseController.findById)

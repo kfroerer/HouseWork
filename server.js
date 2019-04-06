@@ -11,13 +11,14 @@ const LocalStrategy = require("passport-local");
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // Add routes, both API and view
 app.use(passport.initialize());
 app.use(passport.session());
@@ -26,25 +27,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-// var secureRoute = require("./routes/apiRoutes");
-// require("./routes/api")(app);
-// require("./routes/authRoutes")(app);
-// require("./routes/loginRoutes")(app);
-app.use(routes);
 passport.use(
   new LocalStrategy(
     {
-      nameField: "username",
+      usernameField: "username",
       passwordField: "password"
     },
     function(username, password, cb) {
+      console.log("****Passport local");
+
       db.House.findOne({
         where: {
           username: username
         }
       })
-        .then(function(user) {
+        .then(function(house) {
           if (!house || !house.validatePassword(password)) {
             return cb(null, false, { message: "Incorrect name or password." });
           }
@@ -65,6 +62,7 @@ passport.use(
       secretOrKey: "your_jwt_secret"
     },
     function(jwtPayload, done) {
+     
       //find the user in db if needed
       try {
         return done(null, jwtPayload);
@@ -77,7 +75,14 @@ passport.use(
   )
 );
 
-// app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
+var secureRoute = require("./routes/api");
+// require("./routes/api")(app);
+// require("./routes/auth")(app);
+// require("./routes/loginRoutes")(app);
+app.use(routes);
+
+
+app.use("/api", passport.authenticate("jwt", { session: false }), secureRoute);
 
 var syncOptions = { force: false };
 

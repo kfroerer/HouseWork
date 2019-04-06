@@ -24,8 +24,13 @@ module.exports = {
       .findAll(
         {
           where: {
-            roomId: req.params.id
-          }
+            roomId: req.params.id,
+            status: 0
+          }, 
+          // Order the results by date
+          order: [
+            ['date', 'ASC']
+          ]
         }
       )
       .then((data) => res.json(data))
@@ -40,6 +45,7 @@ module.exports = {
         date: req.body.date,
         description: req.body.description,
         roomId: req.body.roomId,
+        status: false
 
       })
       .then((data) => res.json(data))
@@ -49,11 +55,12 @@ module.exports = {
     db.Task
       .update(
         {
-          title: req.params.title,
-          frequency: req.params.frequency,
-          owner: req.params.owner,
-          date: req.params.date,
-          description: req.params.description
+          title: req.body.title,
+          frequency: req.body.frequency,
+          owner: req.body.owner,
+          date: req.body.date,
+          description: req.body.description,
+          status: req.body.status
         },
         {
           where: {

@@ -5,14 +5,14 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Container } from "../components/Grid";
 import rooms from "../rooms.json";
+import { Input,  FormBtn } from "../components/Form";
+
 
 
 class Rooms extends Component {
   state = {
     rooms,
-    title: "",
-    author: "",
-    synopsis: ""
+    newMemberName: "",
   };
 
   componentDidMount() {
@@ -40,37 +40,62 @@ class Rooms extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleMemberFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveRoom({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.newMemberName) {
+      API.saveMember({
+        name: this.state.newMemberName
       })
         .then(res => this.loadRooms())
         .catch(err => console.log(err));
     }
   };
 
+  renderMemberForm = () => (
+        
+    <form>
+        <label htmlFor="memberName">Add Housemates To Your House</label>
+        <Input
+            value={this.state.newMemberName}
+            onChange={this.handleInputChange}
+            name="newMemberName"
+            placeholder="New Housemate's Name"
+            id="memberName"
+        />
+        <FormBtn
+            disabled={!(this.state.newMemberName)}
+            onClick={this.handleMemberFormSubmit}
+        >
+            Add Housemate!
+        </FormBtn>
+    </form>
+)
+
   render() {
     return (
       <Container fluid>
         <Jumbotron>
-          <h1>Pick A Room!</h1>
+          <h1>PICK A ROOM!</h1>
         </Jumbotron>
 
         {/* Room Display */}
-        {this.state.rooms.map(room => (
-          <Link to={"/rooms/" + room.id}>
-            <Room
-              cardClicked={this.cardClicked}
-              id={room.id}
-              key={room.id}
-              image={room.image}
-            />
-          </Link>
-        ))}
+        <div style={{ overflow: "auto" }}>
+          {this.state.rooms.map(room => (
+            <Link key={room.id} to={"/rooms/" + room.id}>
+              <Room
+                cardClicked={this.cardClicked}
+                id={room.id}
+                key={room.id}
+                image={room.image}
+              />
+            </Link>
+          ))}
+        </div>
+
+        <div className="container">
+          {this.renderMemberForm()}
+        </div>
+
       </Container>
     );
   }
