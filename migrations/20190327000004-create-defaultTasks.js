@@ -8,8 +8,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      houseId: {
-        type: Sequelize.INTEGER
+      status: {
+        type: Sequelize.BOOLEAN
+      },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      frequency: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      roomId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

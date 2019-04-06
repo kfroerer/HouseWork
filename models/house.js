@@ -10,14 +10,14 @@ module.exports = function(sequelize, DataTypes) {
     
     },
 
-    // {
-    //   hooks: {
-    //     beforeCreate: function(member) {
-    //       var salt = bcrypt.genSaltSync();
-    //       member.password = bcrypt.hashSync(member.password, salt);
-    //     }
-    //   }
-    // }
+    {
+      hooks: {
+        beforeCreate: function(member) {
+          var salt = bcrypt.genSaltSync();
+          member.password = bcrypt.hashSync(member.password, salt);
+        }
+      }
+    }
 
 
   );
@@ -35,12 +35,12 @@ module.exports = function(sequelize, DataTypes) {
      })
   };
 
-  // House.prototype.validatePassword = function(password) {
-  //   return bcrypt.compareSync(password, this.password);
-  // };
+  House.prototype.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
 
 
-  // House.sync();
+  House.sync();
 
   return House;
 };
