@@ -1,6 +1,8 @@
 import React from "react";
-import "./style.css";
+import { Navbar, Button, NavItem, Modal, TextInput, Toast } from 'react-materialize';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import "./style.css";
 
 function handleSend(e){
   e.preventDefault();
@@ -33,80 +35,55 @@ function resetSend() {
   document.getElementById('sentStatus').innerHTML = " "
 }
 
+function logOut() {
+  Cookies.remove('token');
+}
+
+
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
-      <a className="navbar-brand" href="/"
-        style={{ textAlign: "center" }}
-      >
-        HouseWork
-      </a>
-      <div id="loginSignUp" style={{ float: "right" }}>
-        <button className="btn btn-light" data-toggle="modal" data-target="#modal-invite" id="invite" style={{ float: "left" }}>Invite Your House Mates!</button>
-      </div>
+    <Navbar fixed="true" alignLinks="right" className="teal lighten-2">
+      <NavItem >
+        <Button href='#modal-invite' className="modal-trigger">Invite Housemates</Button>
 
-      {/* modal to sign up */}
-      <div className="modal fade" id="modal-sign-up" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Sign Up</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form method="POST">
-                <div className="form-group">
-                  <label htmlFor="houseNameSU">House Name</label>
-                  <input type="text" className="form-control" id="houseNameSU" aria-describedby="houseHelp" placeholder="Enter House Name"></input>
+        <Modal id='modal-invite' header="Invite Housemates"> 
+         
+          <h3 id="sentStatus"></h3>
+            <div className="row">
+            <form className="col s12" id="contact-form" onSubmit={handleSend.bind(this)} method="POST">
+              <div className="row">
+                <div className="input-field col s6">
+                  <TextInput icon="account_circle"  id="name" type="text" label="Name" />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="inputPasswordSU">Password</label>
-                  <input type="password" className="form-control" id="inputPasswordSU" placeholder="Password"></input>
+              </div>
+              <div className="row">
+                <div className="input-field col s6">
+                  <TextInput icon="email" id="email" type="email" label="Email" />
                 </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary radius" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary radius" id="enter">Start Organizing!</button>
-            </div>
+              </div>
+
+              <div className="row">
+              <div className="input-field col s6">
+                  <TextInput icon="message" id="message" type="text" label="Message"></TextInput>
+                </div>
+              </div>
+            </form>
           </div>
-        </div>
-      </div>
 
-      {/* modal to log in */}
-      <div className="modal fade" id="modal-log-in" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Log In</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <form method="POST">
-                <div className="form-group">
-                  <label htmlFor="houseName">Existing House Name</label>
-                  <input type="text" className="form-control" id="houseName" aria-describedby="houseHelp" placeholder="Enter Existing House Name"></input>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="inputPassword">Password</label>
-                  <input type="password" className="form-control" id="inputPassword" placeholder="Password"></input>
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" id="enter">Get Back To Work!</button>
-            </div>
-          </div>
-        </div>
-      </div>
+          
+        
+        <Button type="submit" id="enter">Submit</Button>
+        </Modal>
+      </NavItem>
 
+      <NavItem>
+       <Toast onClick={logOut} options={ {html: "You've logged out"}} >Log Out</Toast>
+      </NavItem>
+
+  
+    
       {/* modal to send email invites */}
-      <div className="modal fade" id="modal-invite" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      {/* <div className="modal fade" id="modal-invite" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -137,8 +114,9 @@ function Nav() {
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </div> */}
+    
+</Navbar>
   );
 }
 
