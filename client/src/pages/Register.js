@@ -48,7 +48,7 @@ export default class Register extends Component {
           <Container fluid>
           <Row>
             <Col m={6} s={12}>
-            <Card className="amber lighten-5" textClassName="teal-text" title="Register">
+            <Card className="white" textClassName="teal-text" title="Register">
             <div className="Register">
           
             <Form onSubmit={this.handleRegister}>
