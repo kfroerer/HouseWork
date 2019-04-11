@@ -1,10 +1,12 @@
 import React, { Component} from "react";
 import { Button, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { Container } from "../components/Grid";
+import { Row, Col, Card } from 'react-materialize'; 
+
+import Jumbotron from "../components/Jumbotron";
 import API from '../utils/API';
 import Cookies from 'js-cookie';
-import { Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
-
+import "./style.css"
 
 export default class Login extends Component {
     constructor(props) {
@@ -45,25 +47,24 @@ export default class Login extends Component {
     render() {
         return (
           <Container fluid>
-          <Jumbotron>
-          <h1>Please log in
-          </h1>
-          </Jumbotron>
+          <Row>
+            <Col m={6} s={12}>
+            <Card className="white" textClassName="teal-text" title=" Please login">
+
 
           <div className="Login">
           
             <Form onSubmit={this.handleLogin}>
-            <Form.Group controlId="username" bsSize="large">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  autoFocus
-                  type="test"
-                  id="username"
-                  placeholder="username"
+            <FormGroup controlId="username" bsSize="large">
+                <FormLabel>Username</FormLabel>
+                <FormControl
                   value={this.state.username}
                   onChange={this.handleChange}
-                />
-                </Form.Group>
+                  id="username"
+                  placeholder="username"
+                  type="text"
+                  />
+                </FormGroup>
              
               <FormGroup controlId="password" bsSize="large">
                 <FormLabel>Password</FormLabel>
@@ -73,18 +74,22 @@ export default class Login extends Component {
                   placeholder="password"
                   type="password"
                   id="password"
-                />
+                  />
               </FormGroup>
               <Button
                 block
                 bsSize="large"
                 // disabled={!this.validateForm()}
                 type="submit"
-              >
+                >
                 Login
               </Button>
             </Form>
           </div>
+              </Card>
+                </Col>    
+              </Row>
+              
           </Container>
         );
       }
