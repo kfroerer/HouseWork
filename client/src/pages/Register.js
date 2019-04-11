@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { Button, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
-import { Row, Col, CardPanel } from 'react-materialize'; 
+import { Row, Col, Card } from 'react-materialize'; 
 import API from '../utils/API';
 import "./style.css"
 
@@ -45,18 +45,11 @@ export default class Register extends Component {
 
     render() {
         return (
-
-
-
           <Container fluid>
           <Row>
             <Col m={6} s={12}>
-            <CardPanel>
-            
-            
-          <h3 id="cardTitle" >Please Register</h3> 
-
-          <div className="Register">
+            <Card className="amber lighten-5" textClassName="teal-text" title="Register">
+            <div className="Register">
           
             <Form onSubmit={this.handleRegister}>
             <Form.Group controlId="username" bsSize="large">
@@ -103,7 +96,7 @@ export default class Register extends Component {
               </Button>
             </Form>
           </div>
-          </CardPanel>
+          </Card>
             </Col>
             </Row>
 
