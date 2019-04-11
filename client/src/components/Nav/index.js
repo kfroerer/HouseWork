@@ -1,10 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import { Navbar, Button, NavItem, Modal, TextInput, Toast } from 'react-materialize';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import "./style.css";
 
-function handleSend(e){
+export default class Nav extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authenticated: false
+    };
+  }
+  
+  resetForm = () => {
+    document.getElementById('contact-form').reset();
+  }
+ 
+  handleSend = (e) => {
   e.preventDefault();
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
@@ -19,28 +32,60 @@ function handleSend(e){
       }
   }).then((response)=>{
       if (response.data.msg === 'success'){
-          document.getElementById('sentStatus').innerHTML = "Email Sent!"
-          resetForm()
+          document.getElementById('sentStatus').innerHTML = "Email Sent!";
+          this.resetForm()
       }else if(response.data.msg === 'fail'){
           document.getElementById('sentStatus').innerHTML = "Email Failed to Send..."
       }
   })
 }
 
-function resetForm(){
-  document.getElementById('contact-form').reset();
-}
 
-function resetSend() {
+resetSend = () => {
   document.getElementById('sentStatus').innerHTML = " "
 }
 
-function logOut() {
+handleLogOut = () =>  {
+  const { history } = this.props;
   Cookies.remove('token');
+  this.setState({
+    autheticated: false
+  })
+  alert("You've logged out");
+  history.push('/landing');
+}
+
+logOutButton = (props) => {
+  return (
+       <Toast onClick={props.onClick} options={ {html: "You've logged out"}} >Log Out</Toast>
+  )
+}
+
+handleLogInClick = (event) => {
+  event.preventDefault();
+  const { history } = this.props;
+  history.push('/login');
+
+}
+
+logInButton = (props) => {
+  return (
+      <Button onClick={props.onClick} >Log In</Button>
+  )
 }
 
 
-function Nav() {
+
+render () {
+  const isAuthenticated = this.props.isAuthenticated;
+  let button;
+  if (isAuthenticated) {
+    button = <logOutButton onClick={this.handleLogOut} />;
+  }else {
+    button = <logInButton onClick={this.handleLogInClick} />;
+  }
+
+
   return (
     <Navbar fixed="true" alignLinks="right" className="teal lighten-2">
       <NavItem >
@@ -50,7 +95,7 @@ function Nav() {
          
           <h3 id="sentStatus"></h3>
             <div className="row">
-            <form className="col s12" id="contact-form" onSubmit={handleSend.bind(this)} method="POST">
+            <form className="col s12" id="contact-form" onSubmit={this.handleSend.bind(this)} method="POST">
               <div className="row">
                 <div className="input-field col s6">
                   <TextInput icon="account_circle"  id="name" type="text" label="Name" />
@@ -75,9 +120,10 @@ function Nav() {
         <Button type="submit" id="enter">Submit</Button>
         </Modal>
       </NavItem>
-
+     
+      
       <NavItem>
-       <Toast onClick={logOut} options={ {html: "You've logged out"}} >Log Out</Toast>
+        {button}
       </NavItem>
 
   
@@ -119,5 +165,4 @@ function Nav() {
 </Navbar>
   );
 }
-
-export default Nav;
+}
