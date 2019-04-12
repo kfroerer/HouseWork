@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Navbar, Button, NavItem, Modal, TextInput, Toast } from 'react-materialize';
-import axios from 'axios';
+import InviteButton from "../InviteButton";
 import Cookies from 'js-cookie';
 import "./style.css";
+
 
 export default class Nav extends Component {
   constructor(props) {
@@ -12,157 +13,55 @@ export default class Nav extends Component {
       authenticated: false
     };
   }
-  
-  resetForm = () => {
-    document.getElementById('contact-form').reset();
+
+  handlelogout = () => {
+    const { history } = this.props;
+    Cookies.remove('token');
+    this.setState({
+      autheticated: false
+    })
+    alert("You've logged out");
+    history.push('/landing');
   }
- 
-  handleSend = (e) => {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-  axios({
-      method: "POST", 
-      url:"/send", 
-      data: {
-          name: name,   
-          email: email,  
-          message: message
-      }
-  }).then((response)=>{
-      if (response.data.msg === 'success'){
-          document.getElementById('sentStatus').innerHTML = "Email Sent!";
-          this.resetForm()
-      }else if(response.data.msg === 'fail'){
-          document.getElementById('sentStatus').innerHTML = "Email Failed to Send..."
-      }
-  })
-}
 
+  logoutButton = () => {
+    return (
+      <Toast onClick={this.handlelogout} options={{ html: "You've logged out" }} >Log Out</Toast>
+    )
+  }
 
-resetSend = () => {
-  document.getElementById('sentStatus').innerHTML = " "
-}
+  handleloginClick = (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+    history.push('/login');
 
-handleLogOut = () =>  {
-  const { history } = this.props;
-  Cookies.remove('token');
-  this.setState({
-    autheticated: false
-  })
-  alert("You've logged out");
-  history.push('/landing');
-}
+  }
 
-logOutButton = (props) => {
-  return (
-       <Toast onClick={props.onClick} options={ {html: "You've logged out"}} >Log Out</Toast>
-  )
-}
-
-handleLogInClick = (event) => {
-  event.preventDefault();
-  const { history } = this.props;
-  history.push('/login');
-
-}
-
-logInButton = (props) => {
-  return (
-      <Button onClick={props.onClick} >Log In</Button>
-  )
-}
-
-
-
-render () {
-  const isAuthenticated = this.props.isAuthenticated;
-  let button;
-  if (isAuthenticated) {
-    button = <logOutButton onClick={this.handleLogOut} />;
-  }else {
-    button = <logInButton onClick={this.handleLogInClick} />;
+  loginButton = () => {
+    return (
+      <Button onClick={this.handleloginClick} >Log In</Button>
+    )
   }
 
 
-  return (
-    <Navbar fixed="true" alignLinks="right" className="teal lighten-2">
-      <NavItem >
-        <Button href='#modal-invite' className="modal-trigger">Invite Housemates</Button>
 
-        <Modal id='modal-invite' header="Invite Housemates"> 
-         
-          <h3 id="sentStatus"></h3>
-            <div className="row">
-            <form className="col s12" id="contact-form" onSubmit={this.handleSend.bind(this)} method="POST">
-              <div className="row">
-                <div className="input-field col s6">
-                  <TextInput icon="account_circle"  id="name" type="text" label="Name" />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s6">
-                  <TextInput icon="email" id="email" type="email" label="Email" />
-                </div>
-              </div>
+  render() {
+    const isAuthenticated = this.props.isAuthenticated;
+    let button;
+    if (isAuthenticated) {
+      button = <logoutButton />;
+    } else {
+      button = <loginButton />;
+    }
 
-              <div className="row">
-              <div className="input-field col s6">
-                  <TextInput icon="message" id="message" type="text" label="Message"></TextInput>
-                </div>
-              </div>
-            </form>
-          </div>
 
-          
-        
-        <Button type="submit" id="enter">Submit</Button>
-        </Modal>
-      </NavItem>
-     
-      
-      <NavItem>
-        {button}
-      </NavItem>
-
-  
-    
-      {/* modal to send email invites */}
-      {/* <div className="modal fade" id="modal-invite" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Invite Your House To Join!</h5>
-              <button type="button" onClick={resetSend} className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div>
-                <h3 id="sentStatus"> </h3>
-              </div>
-              <form id="contact-form" onSubmit={handleSend.bind(this)} method="POST">
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input type="text" className="form-control" id="name" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
-                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message">Message</label>
-                  <textarea className="form-control" rows="5" id="message"></textarea>
-                </div>
-                <button type="submit" id="enter" className="btn btn-primary">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div> */}
-    
-</Navbar>
-  );
-}
+    return (
+      <Navbar fixed="true" alignLinks="right" className="teal lighten-2">
+        <InviteButton />
+        <NavItem>
+          {button}
+        </NavItem>
+      </Navbar>
+    );
+  }
 }

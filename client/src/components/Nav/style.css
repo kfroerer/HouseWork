@@ -1,5 +1,5 @@
 nav {
-    background-color: #FF5E00;
+    background-color: none;
 }
 
 #enter {
@@ -8,6 +8,7 @@ nav {
 
 .btn {
     margin-top: 12px;
-    background-color: #FF5E00;
+    background-color: black;
+    color: white;
     border-radius: 12px
 }
