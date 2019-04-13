@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 
 import Jumbotron from "../components/Jumbotron";
 import { Container } from "../components/Grid";
+import './style.css'
 
-export default class Login extends Component {
+export default class Landing extends Component {
     constructor(props) {
       super(props);
   
@@ -51,13 +52,8 @@ export default class Login extends Component {
     render() {
         return (
           <Container fluid>
-        <Jumbotron>
-          <h1>Welcome to HouseWork!
-            Please log in or register.
-          </h1>
-        </Jumbotron>
-          
-        <div>
+                 
+        <div className="landingPage">
         <ButtonToolbar>
           <Link to="/register">
           <Button variant="outline-primary" size="lg">
@@ -70,9 +66,9 @@ export default class Login extends Component {
           </Button>
           </Link>
         </ButtonToolbar>
-        </div>
+      
 
-
+          </div>
        </Container>
        
         );
