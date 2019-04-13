@@ -1,7 +1,14 @@
-.navbar {
-    background-color: #00cccc;
+nav {
+    background-color: none;
 }
 
 #enter {
-    background-color: #FF5E00;
+    background-color: #00cccc
+}
+
+.btn {
+    margin-top: 12px;
+    background-color: black;
+    color: white;
+    border-radius: 12px
 }

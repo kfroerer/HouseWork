@@ -1,0 +1,32 @@
+.card {
+    margin-top: 15%;
+    border-radius: 5px;
+    
+}
+
+label {
+    font-size: 17px;
+}
+body {
+    background: rgb(247,246,246);
+    background: radial-gradient(circle, rgba(247,246,246,1) 0%, rgba(60,60,60,0.34217436974789917) 100%);
+
+}
+
+.card-title {
+    text-align: center;
+    color: teal;
+}
+
+.card .card-title {
+    font-size: 40px;
+}
+
+.card .card-content .card-title {
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #ff5e00;
+    
+}

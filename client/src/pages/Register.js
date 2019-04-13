@@ -1,8 +1,10 @@
 import React, { Component} from "react";
 import { Button, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import API from '../utils/API';
 import { Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import { Row, Col, Card } from 'react-materialize'; 
+import API from '../utils/API';
+import "./style.css"
 
 
 export default class Register extends Component {
@@ -44,12 +46,10 @@ export default class Register extends Component {
     render() {
         return (
           <Container fluid>
-          <Jumbotron>
-          <h1>Please Register
-          </h1>
-          </Jumbotron>
-
-          <div className="Register">
+          <Row>
+            <Col m={6} s={12}>
+            <Card className="white" textClassName="teal-text" title="Register">
+            <div className="Register">
           
             <Form onSubmit={this.handleRegister}>
             <Form.Group controlId="username" bsSize="large">
@@ -96,6 +96,10 @@ export default class Register extends Component {
               </Button>
             </Form>
           </div>
+          </Card>
+            </Col>
+            </Row>
+
           </Container>
         );
       }
