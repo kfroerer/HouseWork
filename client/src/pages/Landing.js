@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, FormControl, FormLabel, ButtonToolbar } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-
-import Jumbotron from "../components/Jumbotron";
+import { Row, Slide, Slider, Caption} from 'react-materialize';
 import { Container } from "../components/Grid";
+import bathroom from '../assets/images/bathroom.jpg'
 
-export default class Login extends Component {
+export default class Landing extends Component {
     constructor(props) {
       super(props);
   
@@ -51,14 +51,22 @@ export default class Login extends Component {
     render() {
         return (
           <Container fluid>
-        <Jumbotron>
-          <h1>Welcome to HouseWork!
-            Please log in or register.
-          </h1>
-        </Jumbotron>
+          <Slider fullscreen={true}>
+            <Slide>
+              <li>
+                <img src={bathroom}/>
+              </li>
+              <Caption> 
+                <h1>Welcome To HouseWork</h1>
+                <h3> We help you make your house work </h3>
+              </Caption>
+            </Slide>
+          </Slider>
+       
           
         <div>
-        <ButtonToolbar>
+        <Row style={{alignContent: "center"}}>
+        <ButtonToolbar >
           <Link to="/register">
           <Button variant="outline-primary" size="lg">
             Register 
@@ -70,8 +78,9 @@ export default class Login extends Component {
           </Button>
           </Link>
         </ButtonToolbar>
+        </Row>
         </div>
-
+        
 
        </Container>
        
