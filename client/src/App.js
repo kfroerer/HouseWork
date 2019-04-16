@@ -35,7 +35,7 @@ render () {
   return (
     <Router history={history}>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
         <Route exact path="/" render={() => (
             authenticated ? (<Redirect to="/rooms"/> ) : ( <Landing />)
