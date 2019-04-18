@@ -66,8 +66,6 @@ const ResponsiveContainer = ({ children }) => (
     <MobileContainer onClick={() => this.handleloginClick}>{children}</MobileContainer>
   </div>
 )
-const LivingroomPic = () =>
-  <Image src="../assets/images/livingroom.jpg" size="large"></Image>
 
 ResponsiveContainer.propTypes = {
   children: PropTypes.node,
@@ -95,8 +93,8 @@ ResponsiveContainer.propTypes = {
               features like allowance tracking, they'll be just as excited as you are. 
             </p>
           </Grid.Column>
-          <Grid.Column floated='right' width={4}>
-            <LivingroomPic />
+          <Grid.Column floated='right' width={7}>
+            <Image src={require('../assets/images/livingroom.jpg')} size="huge" />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
