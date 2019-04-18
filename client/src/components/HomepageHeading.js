@@ -10,10 +10,12 @@ import { Link } from 'react-router-dom';
 
 
 class HomepageHeading extends Component {
-
+    constructor(props){
+      super(props)
+    }
 
     render() {
-        const  {mobile } = this.props
+        const  { mobile } = this.props
     return (    
     <Container text style={{backgroundImage: "../assets/images/kitchen.jpg"}}>
       <Header
@@ -38,7 +40,7 @@ class HomepageHeading extends Component {
         }}
       />
       <Link to="/register">
-      <Button primary size='huge' onClick={this.handleClick}>
+      <Button primary size='huge' onClick={this.props.handleloginClick}>
         Get Started
         <Icon name='right arrow' />
       </Button>

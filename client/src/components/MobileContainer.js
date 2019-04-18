@@ -9,11 +9,17 @@ import {
   Sidebar,
   Icon
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
 
 export default class MobileContainer extends Component {
-    state = {}
+  constructor(props){
+    super(props)
   
+     this.state = {}
+  }
+
+
     getWidth = () => {
         const isSSR = typeof window === 'undefined'
       
@@ -23,7 +29,18 @@ export default class MobileContainer extends Component {
     handleSidebarHide = () => this.setState({ sidebarOpened: false })
   
     handleToggle = () => this.setState({ sidebarOpened: true })
-  
+
+    handleloginClick = () => {
+      const { onClick: parentOnClick } = this.props;
+      parentOnClick();
+    }
+
+    handleregisterClick = () => {
+      const { onClick: parentOnClick } = this.props;
+      parentOnClick();
+    }
+
+
     render() {
       const { children } = this.props
       const { sidebarOpened } = this.state
@@ -47,8 +64,15 @@ export default class MobileContainer extends Component {
             </Menu.Item>
             <Menu.Item as='a'>Rooms</Menu.Item>
             <Menu.Item as='a'>Tasks</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
+
+            <Link to="/login">
+            <Menu.Item   basic inverted color='teal' 
+              onClick={this.handleloginClick}>Log in</Menu.Item>
+            </Link>
+            <Link to="/register">
+            <Menu.Item basic inverted color='teal'
+              onClick={this.handleregisterClick}>Register</Menu.Item>
+            </Link>
           </Sidebar>
   
           <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -64,12 +88,18 @@ export default class MobileContainer extends Component {
                     <Icon name='sidebar' />
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    <Button as='a' inverted>
+                    <Link to="/login">
+                    <Button as='a'  basic inverted color='teal'
+                    onClick={this.handleloginClick}>
                       Log in
                     </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                      Sign Up
+                    </Link>
+                    <Link to="/register">
+                    <Button basic inverted color='teal' style={{ marginLeft: '0.5em' }}
+                      onClick={this.handleregisterClick}>
+                      Register
                     </Button>
+                    </Link>
                   </Menu.Item>
                 </Menu>
               </Container>

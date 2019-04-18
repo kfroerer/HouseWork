@@ -37,21 +37,39 @@ import MobileContainer from '../components/MobileContainer';
  * It can be more complicated, but you can create really flexible markup.
  */
 
+export default class HomepageLayout extends Component {
+constructor(props){
+  super(props)
 
+  this.state = {
+    authenticated: null
+  }
+  
+}
 
+handleloginClick = (event) => {
+  event.preventDefault();
+  const { history } = this.props;
+  history.push('/login');
+}
 
+handleregisterClick = event => {
+  event.preventDefault();
+  this.props.history.push("/register");
+}
+
+render() {
 const ResponsiveContainer = ({ children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
+    <DesktopContainer onClick={() => this.handleregisterClick}>{children}</DesktopContainer>
+    <MobileContainer onClick={() => this.handleloginClick}>{children}</MobileContainer>
   </div>
 )
 
 ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
-
-const HomepageLayout = () => (
+  return (
   <ResponsiveContainer>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
@@ -151,6 +169,7 @@ const HomepageLayout = () => (
       </Container>
     </Segment>
   </ResponsiveContainer>
-)
 
-export default HomepageLayout
+  )
+}
+}
