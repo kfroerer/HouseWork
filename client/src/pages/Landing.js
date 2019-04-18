@@ -20,6 +20,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import DesktopContainer from '../components/DesktopContainer';
 import MobileContainer from '../components/MobileContainer';
 
@@ -65,6 +66,8 @@ const ResponsiveContainer = ({ children }) => (
     <MobileContainer onClick={() => this.handleloginClick}>{children}</MobileContainer>
   </div>
 )
+const LivingroomPic = () =>
+  <Image src="../assets/images/livingroom.jpg" size="large"></Image>
 
 ResponsiveContainer.propTypes = {
   children: PropTypes.node,
@@ -92,13 +95,15 @@ ResponsiveContainer.propTypes = {
               features like allowance tracking, they'll be just as excited as you are. 
             </p>
           </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='../assets/images/livingroom.jpg' />
+          <Grid.Column floated='right' width={4}>
+            <LivingroomPic />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Try It Out</Button>
+            <Link to="/register">
+            <Button onClick={()=> this.handleregisterClick} secondary size='huge'>Try It Out</Button>
+            </Link>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -111,7 +116,9 @@ ResponsiveContainer.propTypes = {
             <Header as='h3' style={{ fontSize: '2em' }}>
               "I never have to guess what needs to be done!"
             </Header>
-            <p style={{ fontSize: '1.33em' }}><b>Joshua</b>PhD Student</p>
+            <p style={{ fontSize: '1.33em' }}>
+            <b>Joshua</b> 
+            <p>-PhD Student</p></p>
           </Grid.Column>
           
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
@@ -119,7 +126,8 @@ ResponsiveContainer.propTypes = {
               "I love being able to assign others to help."
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <b>Mary</b>Salt Lake City, Utah
+              <b>Mary</b> 
+              <p>-Salt Lake City, Utah</p>
             </p>
           </Grid.Column>
         </Grid.Row>

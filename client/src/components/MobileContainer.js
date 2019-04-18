@@ -87,15 +87,15 @@ export default class MobileContainer extends Component {
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name='sidebar' />
                   </Menu.Item>
-                  <Menu.Item position='right'>
+                  <Menu.Item position='right' style={{marginBottom: '-20px'}}>
                     <Link to="/login">
-                    <Button as='a'  basic inverted color='teal'
+                    <Button as='a'  basic inverted color='teal' style={{marginRight: '-20px'}}
                     onClick={this.handleloginClick}>
                       Log in
                     </Button>
                     </Link>
                     <Link to="/register">
-                    <Button basic inverted color='teal' style={{ marginLeft: '0.5em' }}
+                    <Button basic inverted color='teal' style={{ marginLeft: '0.5em', marginRight: '-20px' }}
                       onClick={this.handleregisterClick}>
                       Register
                     </Button>

@@ -8,10 +8,14 @@ import {
   Segment,
   Visibility,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
 
 class DesktopContainer extends Component {
-    state = {}
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
   
     hideFixedMenu = () => this.setState({ fixed: false })
     showFixedMenu = () => this.setState({ fixed: true })
@@ -21,6 +25,17 @@ class DesktopContainer extends Component {
       
         return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
       }
+
+      handleloginClick = () => {
+        const { onClick: parentOnClick } = this.props;
+        parentOnClick();
+      }
+  
+      handleregisterClick = () => {
+        const { onClick: parentOnClick } = this.props;
+        parentOnClick();
+      }
+  
 
 
     render() {
@@ -53,13 +68,19 @@ class DesktopContainer extends Component {
                   </Menu.Item>
                   <Menu.Item as='a'>Rooms</Menu.Item>
                   <Menu.Item as='a'>Tasks</Menu.Item>
-                  <Menu.Item position='right'>
-                    <Button as='a' inverted={!fixed}>
+                  <Menu.Item position='right' style={{marginBottom: '-19px'}}>
+                    <Link to="/login">
+                    <Button basic inverted color='teal' 
+                      onClick={this.handleloginClick}>
                       Log in
                     </Button>
-                    <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                      Sign Up
+                    </Link>
+
+                    <Link to="/register">
+                    <Button basic inverted color='teal'  primary={fixed} style={{ marginLeft: '0.5em' }}>
+                      Register
                     </Button>
+                    </Link>
                   </Menu.Item>
                 </Container>
               </Menu>

@@ -14,6 +14,11 @@ class HomepageHeading extends Component {
       super(props)
     }
 
+    handleregisterClick = () => {
+      const { onClick: parentOnClick } = this.props;
+      parentOnClick();
+    }
+
     render() {
         const  { mobile } = this.props
     return (    
@@ -23,10 +28,12 @@ class HomepageHeading extends Component {
         content='HouseWork'
         inverted
         style={{
-          fontSize: mobile ? '2em' : '4em',
+          fontSize: mobile ? '3em' : '6em',
           fontWeight: 'normal',
           marginBottom: 0,
-          marginTop: mobile ? '1.5em' : '3em',
+          marginTop: mobile ? '.5em' : '1.5em',
+          color: '#06d2d2',
+          letterSpacing: '5px'
         }}
       />
       <Header
@@ -34,13 +41,14 @@ class HomepageHeading extends Component {
         content='We help you make your house work.'
         inverted
         style={{
-          fontSize: mobile ? '1.5em' : '1.7em',
+          fontSize: mobile ? '1em' : '1.7em',
           fontWeight: 'normal',
-          marginTop: mobile ? '0.5em' : '1.5em',
+          marginTop: mobile ? '1.0em' : '1.5em',
+          marginBottom: mobile ? '2.5em': '2.0em'
         }}
       />
       <Link to="/register">
-      <Button primary size='huge' onClick={this.props.handleloginClick}>
+      <Button basic inverted color='teal' size='big' onClick={this.handleloginClick}>
         Get Started
         <Icon name='right arrow' />
       </Button>
