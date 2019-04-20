@@ -22,7 +22,7 @@ class HomepageHeading extends Component {
     render() {
         const  { mobile } = this.props
     return (    
-    <Container text style={{backgroundImage: "../assets/images/kitchen.jpg"}}>
+    <Container text style={{backgroundColor: 'transparent'}}>
       <Header
         as='h1'
         content='HouseWork'
@@ -48,7 +48,7 @@ class HomepageHeading extends Component {
         }}
       />
       <Link to="/register">
-      <Button basic inverted color='teal' size='big' onClick={this.handleloginClick}>
+      <Button inverted color='black' size='big' onClick={this.handleloginClick}>
         Get Started
         <Icon name='right arrow' />
       </Button>

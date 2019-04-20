@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
+import bigImage from '../assets/images/livingroom.jpg';
 
 export default class MobileContainer extends Component {
   constructor(props){
@@ -79,7 +80,7 @@ export default class MobileContainer extends Component {
             <Segment
               inverted
               textAlign='center'
-              style={{ minHeight: 350, padding: '1em 0em' }}
+              style={{ minHeight: 50, padding: '1em 0em', backgroundImage: `url(${bigImage})`}}
               vertical
             >
               <Container>
@@ -103,8 +104,17 @@ export default class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
             </Segment>
+            <Segment
+              inverted
+              textAlign='center'
+              style={{ minHeight: 350, padding: '1em 0em' }}
+              vertical
+              >
+              <HomepageHeading mobile />
+
+            </Segment>
+
   
             {children}
           </Sidebar.Pusher>

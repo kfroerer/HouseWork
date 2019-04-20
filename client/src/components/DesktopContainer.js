@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
+import kitchen from '../assets/images/kitchen.jpg';
 
 class DesktopContainer extends Component {
   constructor(props){
@@ -52,14 +53,14 @@ class DesktopContainer extends Component {
             <Segment
               inverted
               textAlign='center'
-              style={{ minHeight: 700, padding: '1em 0em', backgroundImage: `url(require('../assets/images/kitchen.jpg)` }}
+              style={{ minHeight: 350, padding: '1em 0em', backgroundImage: `url(${kitchen})` }}
               vertical
             >
-              <Menu
-                fixed={fixed ? 'top' : null}
-                inverted={!fixed}
-                pointing={!fixed}
-                secondary={!fixed}
+              <Menu style={{marginTop: "-19px"}}
+                fixed
+                inverted
+                // pointing={!fixed}
+                // secondary={!fixed}
                 size='large'
               >
                 <Container>
@@ -84,8 +85,17 @@ class DesktopContainer extends Component {
                   </Menu.Item>
                 </Container>
               </Menu>
-              <HomepageHeading />
+              <HomepageHeading></HomepageHeading>
             </Segment>
+            {/* <Segment
+              inverted
+              textAlign='center'
+              style={{ minHeight: 350, padding: '1em 0em' }}
+              vertical
+              >
+              <HomepageHeading />
+
+            </Segment> */}
           </Visibility>
   
           {children}
