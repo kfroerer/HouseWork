@@ -6,10 +6,9 @@ import Rooms from "./pages/Rooms";
 import Description from "./pages/Description";
 import Tasks from "./pages/Tasks";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Landing from "./pages/Landing";
+import HomepageLayout from "./pages/HomepageLayout";
 
 const history = createBrowserHistory();
 
@@ -35,10 +34,9 @@ render () {
   return (
     <Router history={history}>
       <div>
-        <Nav />
         <Switch>
         <Route exact path="/" render={() => (
-            authenticated ? (<Redirect to="/rooms"/> ) : ( <Landing />)
+            authenticated ? (<Redirect to="/rooms"/> ) : ( <HomepageLayout />)
           )}
         />
           <Route exact path="/register" render={() => (<Register history={history}/>)}/>

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('task_house', {
+    return queryInterface.createTable('defaultTasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,6 +11,22 @@ module.exports = {
       status: {
         type: Sequelize.BOOLEAN
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      frequency: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      roomId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -18,17 +34,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      houseId: {type: Sequelize.INTEGER},
-      title: {type: Sequelize.STRING, allowNull: false},
-      frequency: {type: Sequelize.STRING, allowNull: true},
-      owner: {type: Sequelize.STRING, allowNull: false},
-      date: {type: Sequelize.DATE, allowNull: false},
-      description: {type: Sequelize.TEXT, allowNull: true}
-    
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('task_house');
+    return queryInterface.dropTable('defaultTasks');
   }
 };

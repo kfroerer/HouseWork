@@ -22,21 +22,24 @@ module.exports = {
           password: req.body.password,
           email: req.body.email
           })
-          // .then((house) => {
-            // db.defaultTasks.findAll().then((tasks) => {
-            //   tasks.map((task) => {
-            //     house.addDefaultTasks(task,
-            //       {
-            //         through: {
-            //           status: false,
-            //           frequency: task.frequency,
-                      //we may need more here
-            //         }
-            //       })
-            //   })
-            // })
-          // })
-          // return res.json(house)
+          .then((house) => {
+            db.defaultTasks.findAll().then((defaultTasks) => {
+              defaultTasks.map((defaultTask) => {
+                house.addDefaultTasks(defaultTask,
+                  {
+                    through: {
+                      status: false,
+                      // frequency: defaultTask.frequency,
+                      // owner: defaultTask.owner,
+                      // date: defaultTask.date,
+                      // roomId: defaultTask.roomId
+                    }
+                  }).then(house => {
+                    return res.json({house:house})
+                  })
+              })
+            })
+          })
           //not sure what to return here....//want to reroute to rooms view
 
       .then(data => res.json(data))

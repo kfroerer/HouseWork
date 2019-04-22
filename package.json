@@ -25,7 +25,6 @@
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "cookieparser": "^0.1.0",
-    "create-react-context": "^0.2.3",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "js-cookie": "^2.2.0",
