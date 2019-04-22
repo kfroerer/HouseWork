@@ -68,7 +68,7 @@ export default class MobileContainer extends Component {
 
             <Link to="/login">
             <Menu.Item   basic inverted color='teal' 
-              onClick={this.handleloginClick}>Log in</Menu.Item>
+              onClick={this.props.handleloginClick}>Log in</Menu.Item>
             </Link>
             <Link to="/register">
             <Menu.Item basic inverted color='teal'
@@ -91,29 +91,22 @@ export default class MobileContainer extends Component {
                   <Menu.Item position='right' style={{marginBottom: '-20px'}}>
                     <Link to="/login">
                     <Button as='a'  basic inverted color='teal' style={{marginRight: '-20px'}}
-                    onClick={this.handleloginClick}>
+                    onClick={this.props.handleloginClick}>
                       Log in
                     </Button>
                     </Link>
                     <Link to="/register">
                     <Button basic inverted color='teal' style={{ marginLeft: '0.5em', marginRight: '-20px' }}
-                      onClick={this.handleregisterClick}>
+                      onClick={this.props.handleregisterClick}>
                       Register
                     </Button>
                     </Link>
                   </Menu.Item>
                 </Menu>
               </Container>
+              <HomepageHeading mobile/>
             </Segment>
-            <Segment
-              inverted
-              textAlign='center'
-              style={{ minHeight: 350, padding: '1em 0em' }}
-              vertical
-              >
-              <HomepageHeading mobile />
-
-            </Segment>
+            
 
   
             {children}

@@ -6,6 +6,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import { Link } from 'react-router-dom';
 import API from '../utils/API';
 import Cookies from 'js-cookie';
+import PageMenu from '../components/PageMenu';
 // import "./style.css"
 
 export default class Login extends Component {
@@ -56,7 +57,7 @@ export default class Login extends Component {
       }
     `} </style>
     
-      
+      <PageMenu />
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='white' textAlign='center'>

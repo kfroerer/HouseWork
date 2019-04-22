@@ -72,7 +72,7 @@ class DesktopContainer extends Component {
                   <Menu.Item position='right' style={{marginBottom: '-19px'}}>
                     <Link to="/login">
                     <Button basic inverted color='teal' 
-                      onClick={this.handleloginClick}>
+                      onClick={this.props.handleloginClick}>
                       Log in
                     </Button>
                     </Link>

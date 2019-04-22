@@ -3,11 +3,14 @@ import {
   Container,
   Image,
   Menu,
-  Container,
-  Link
+  Button
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import logo from '../assets/images/logo.jpg'
 
-export default class Menu extends Component {
+
+export default class PageMenu extends Component {
   handlelogoutClick = () => {
     Cookies.remove('token');
   }
@@ -16,7 +19,7 @@ export default class Menu extends Component {
     return (
       <Menu fixed='top' inverted>
         <Container>
-          <Menu.Item as='a' header>
+          <Menu.Item as='a' href="/" header>
             <Image size='mini' circular src={`require(${logo})`} />
             HouseWork
           </Menu.Item>
