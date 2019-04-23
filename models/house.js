@@ -22,16 +22,14 @@ module.exports = function(sequelize, DataTypes) {
 
   );
 
-  House.associate = function(models) {
-    House.hasMany(models.Member, {
-      foreignKey: {
-        name: "houseId"
-      }
-    });
+  House.associate = models => {
+    House.hasMany(models.Member, {as: 'members',foreignKey: 'HouseId'});
+    
 
-    House.belongsToMany(models.defaultTasks, { 
+    House.belongsToMany(models.defaultTask, { 
+      foreignKey: 'houseId',
       through: models.Task,
-      foreignKey: 'houseId'
+      as: 'defaultTask'
      })
   };
 

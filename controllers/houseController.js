@@ -23,16 +23,16 @@ module.exports = {
           email: req.body.email
           })
           .then((house) => {
-            db.defaultTasks.findAll().then((defaultTasks) => {
-              defaultTasks.map((defaultTask) => {
-                house.addDefaultTasks(defaultTask,
+            db.defaultTask.findAll()
+            .then((defaultTask) => {
+              defaultTask.map((defaultTask) => {
+                house.adddefaultTask(defaultTask,
                   {
                     through: {
                       status: false,
-                      // frequency: defaultTask.frequency,
-                      // owner: defaultTask.owner,
-                      // date: defaultTask.date,
-                      // roomId: defaultTask.roomId
+                      frequency: defaultTask.frequency,
+                      owner: defaultTask.owner,
+                      date: defaultTask.date,
                     }
                   }).then(house => {
                     return res.json({house:house})

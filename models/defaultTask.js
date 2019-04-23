@@ -1,6 +1,6 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
-    const defaultTask = sequelize.define("defaultTasks", {
+    const defaultTask = sequelize.define("defaultTask", {
         title: {type: DataTypes.STRING, allowNull: false},
         frequency: {type: DataTypes.STRING, allowNull: true},
         description: {type: DataTypes.TEXT, allowNull: true},
@@ -16,8 +16,9 @@ module.exports = (sequelize, DataTypes) => {
           }
         });
         defaultTask.belongsToMany(models.House, {
+          foreignKey: "taskId",
            through: models.Task,
-           foreignKey: "taskId"
+           as: 'house'
            })
         
       };
