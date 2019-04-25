@@ -60,11 +60,11 @@ export default class Login extends Component {
       <PageMenu />
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='white' textAlign='center'>
-            Log-in to your account
-          </Header>
           <Form size='large' onSubmit={this.handleLogin}>
             <Segment stacked>
+          <Header as='h2' color='white' textAlign='center' style={{marginBottom:'20px', marginTop: '10px'}} >
+            Log-in to your account
+          </Header>
               <Form.Input 
               fluid icon='user' 
               iconPosition='left' 
