@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import { Container, Button, Form, Grid, Header, Image, Message, Segment, Card} from 'semantic-ui-react'
+import PageMenu from '../components/PageMenu';
+
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn, Date, Frequency } from "../components/Form";
-import rooms from "../rooms.json";
 import moment from 'moment';
+import rooms from "../rooms.json";
+import Room from "../components/Room";
+
 
 const setTaskStyling = ({ date }) => {
     const now = new Date();
@@ -168,11 +171,15 @@ class Task extends Component {
     render() {
         return (
             <Container fluid>
-                <Jumbotron>
+                  <PageMenu style={{marginBottom: '90px'}}/>
+                
+                <Segment raised inverted color="teal" textAlign='center' style={{marginTop: '100px'}}>
+                    
                     <h1>
                         {this.state.room.title} TASKS
                     </h1>
-                </Jumbotron>
+                    <Image src={this.state.room.image}/>
+                </Segment>
                 <Link to="/rooms" style={{ color: "#FF5E00" }}>← Back to Rooms</Link>
                 {/* Chore list begins */}
                 {this.state.tasks.length ? (
@@ -180,7 +187,7 @@ class Task extends Component {
                         {this.mapTasks()}
                     </List>
                 ) : (
-                        <h3 style={{ paddingTop: "10px", paddingBottom: "10px" }}>Looks Like You Have No Tasks Scheduled Here!</h3>
+                        <h3 style={{ paddingTop: "10px", paddingBottom: "10px" }}>Click below to add a task</h3>
                     )}
 
                 {/* form for creating a new task, figuring this should be a modal eventually  */}
