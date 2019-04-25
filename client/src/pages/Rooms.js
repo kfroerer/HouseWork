@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
 import Room from "../components/Room";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Container } from "../components/Grid";
 import rooms from "../rooms.json";
 import { Input,  FormBtn } from "../components/Form";
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import PageMenu from '../components/PageMenu';
 
 
 
@@ -49,37 +50,38 @@ class Rooms extends Component {
         .then(res => this.loadRooms())
         .catch(err => console.log(err));
     }
+    this.setState({newMemberName: ""})
   };
 
   renderMemberForm = () => (
-        
-    <form>
-        <label htmlFor="memberName">Add Housemates To Your House</label>
-        <Input
+        <Form size="small" onSubmit={this.handleMemberFormSubmit}>
+        <Segment>
+          <Header as='h4' color='white' textAlign='center'>
+          Add Housemates To Your House
+          </Header>
+          <Form.Input 
             value={this.state.newMemberName}
             onChange={this.handleInputChange}
             name="newMemberName"
             placeholder="New Housemate's Name"
-            id="memberName"
-        />
-        <FormBtn
-            disabled={!(this.state.newMemberName)}
-            onClick={this.handleMemberFormSubmit}
-        >
-            Add Housemate!
-        </FormBtn>
-    </form>
+            id="memberName"/>
+          <Button color='teal' fluid size="small">
+            Add Housemate
+          </Button>
+        </Segment>
+        
+        </Form>
+   
 )
 
   render() {
     return (
-      <Container fluid>
-        <Jumbotron>
-          <h1>PICK A ROOM!</h1>
-        </Jumbotron>
+      <Container fluid >
+      <PageMenu style={{marginBottom: '90px'}}/>
+        
 
         {/* Room Display */}
-        <div style={{ overflow: "auto" }}>
+        <div style={{ overflow: "auto", marginTop: '90px', marginBottom: '30px', marginLeft: '25px' }}>
           {this.state.rooms.map(room => (
             <Link key={room.id} to={"/rooms/" + room.id}>
               <Room
@@ -87,6 +89,7 @@ class Rooms extends Component {
                 id={room.id}
                 key={room.id}
                 image={room.image}
+                title={room.title}
               />
             </Link>
           ))}

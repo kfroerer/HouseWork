@@ -1,17 +1,27 @@
 import React from "react";
+import { Image, Label, Segment } from 'semantic-ui-react'
+
 
 const Card = props => (
-  <div style={cardStyle}>
+          <Segment style={cardStyle}>
+    <Label attached='top' color="teal">{props.title}</Label>
     <div style={imgContainerStyle}>
-      <img style={imgStyle} alt={props.name} src={props.image} />
+    {props.name}
+      <Image 
+      style={imgStyle} 
+      alt={props.name}
+      src={props.image}
+      label={{as: 'a', color: 'teal', content: "", ribbon: true}} />
+
     </div>
-  </div>
+  </Segment>
 );
 
 const cardStyle = {
-  height: "300px",
+  height: "200px",
   width: "300px",
-  float: "left"
+  float: "left",
+  margin: '5px'
 }
 
 const imgContainerStyle = {
@@ -23,9 +33,9 @@ const imgContainerStyle = {
 
 const imgStyle  = {
   display: "block",
-    margin: "auto",
-    paddingTop: "30px",
-  width: "75%"
+    marginTop: '-40px',
+    // paddingTop: "30px",
+  width: "100%"
 }
 
 export default Card;
