@@ -61,7 +61,7 @@ export default class Login extends Component {
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='white' textAlign='center'>
-           Log-in to your account
+            Log-in to your account
           </Header>
           <Form size='large' onSubmit={this.handleLogin}>
             <Segment stacked>
@@ -72,6 +72,7 @@ export default class Login extends Component {
               type="text"
               value={this.state.username}
               onChange={this.handleChange}
+              id="username"
                />
               <Form.Input
                 fluid
@@ -81,7 +82,7 @@ export default class Login extends Component {
                 type='password'
                 value={this.state.password}
                 onChange={this.handleChange}
-                
+                id="password"
               />
   
               <Button color='teal' fluid size='large'>
