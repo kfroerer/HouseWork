@@ -81,7 +81,7 @@ class Rooms extends Component {
         
 
         {/* Room Display */}
-        <div style={{ overflow: "auto", marginTop: '90px', marginBottom: '30px', marginLeft: '25px' }}>
+        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '45px' }}>
           {this.state.rooms.map(room => (
             <Link key={room.id} to={"/rooms/" + room.id}>
               <Room

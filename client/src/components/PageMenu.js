@@ -25,7 +25,9 @@ export default class PageMenu extends Component {
           </Menu.Item>
           <Menu.Item as='a' href="/rooms" >Rooms</Menu.Item>
           <Menu.Item as='a' href="/tasks">Tasks</Menu.Item>
-          <Menu.Item position='right' style={{ marginBottom: '-19px' }}>
+          <Menu.Item position='right' 
+          // style={{ marginBottom: '-10px' }}
+          >
             <Link to="/">
               <Button basic inverted color='teal' >
                 Logout
