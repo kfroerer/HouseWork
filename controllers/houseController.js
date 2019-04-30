@@ -25,42 +25,32 @@ module.exports = {
           }, {
             include: [{
               model: db.defaultTask,
-              as: 'defaultTask',
+              as: 'task',
               through: {
                 model: db.Task
               }
             }]
-          }
-          )
-
-          await Promise.all(res.defaultTask.map((task, index) => 
-          res.addTask(task, {
-            through: {
-              status: false,
-              frequency: defaultTask[index].frequency,
-              owner: defaultTask[index].owner,
-              date: defaultTask[index].date,
-            }
-          })))
-          // .then((house) => {
-          //   db.defaultTask.findAll()
-          //   .then((defaultTask) => {
-          //     defaultTask.map((defaultTask) => {
-          //       house.adddefaultTask(defaultTask,
-          //         {
-          //           through: {
-          //             status: false,
-          //             frequency: defaultTask.frequency,
-          //             owner: defaultTask.owner,
-          //             date: defaultTask.date,
-          //           }
-          //         }).then(house => {
-          //           return res.json({house:house})
-          //         })
-          //     })
-          //   })
-          // })
-          //not sure what to return here....//want to reroute to rooms view
+          })
+          .then((house) => {
+            db.defaultTask.findAll()
+            .then((result) => {
+              result.map((task) => {
+                house.addTask(task,
+                  {
+                    through: {
+                      status: false,
+                      title: task.title,
+                      frequency: task.frequency,
+                      owner: task.owner,
+                      date: task.date,
+                    }
+                  }).then(() => {
+                      return res.json({result:house})
+                  })
+              })
+            })
+          })
+          // not sure what to return here....//want to reroute to rooms view
 
       .then(data => res.json(data))
       .catch(err => res.status(422).json(err));

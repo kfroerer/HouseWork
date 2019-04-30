@@ -1,5 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     var Task = sequelize.define("Task", {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
+      },
       houseId: {
         type: DataTypes.INTEGER,
         references: {
@@ -19,8 +25,10 @@ module.exports = function(sequelize, DataTypes) {
       owner: {type: DataTypes.STRING, allowNull: false},
       date: {type: DataTypes.DATE, allowNull: false},
     
-    });
-  
+    }, {});
+
+    Task.associate= (models) => {};
+   
     return Task;
   };
   

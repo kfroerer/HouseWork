@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   const House = sequelize.define(
     "House", 
     {
+        // id: {type: DataTypes.INTEGER, primaryKey: true},
         username: { type: DataTypes.STRING, allowNull:false },
         password: { type: DataTypes.STRING, allowNull: false},
     
@@ -17,19 +18,17 @@ module.exports = function(sequelize, DataTypes) {
           member.password = bcrypt.hashSync(member.password, salt);
         }
       }
-    }
-
-
-  );
+    },
+    {});
 
   House.associate = models => {
-    House.hasMany(models.Member, {as: 'members',foreignKey: 'HouseId'});
+    House.hasMany(models.Member, {as: 'members', foreignKey: 'HouseId'});
     
 
     House.belongsToMany(models.defaultTask, { 
       foreignKey: 'houseId',
       through: models.Task,
-      as: 'defaultTask'
+      as: 'task'
      })
   };
 
