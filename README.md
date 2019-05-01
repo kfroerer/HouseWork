@@ -17,3 +17,11 @@ Tasks are organized by room. So just pick a room and see the tasks listed in ord
 
 Don't have the same chores as we do? No problem. Everything is customizable to fit your needs! 
 
+This single-page app utilizes React, MySQL, Sequelize, Express, SemanticUI, and follows the MVC pattern. A RESTful API was created and called via AJAX.
+
+Feel free to clone the repo, update the config file with your local database info, run a yarn install then yarn start and you're ready to go.
+
+Future Developments include more views (members, weekly, monthly, dashboard), and ability to create/customize rooms.
+
+
+
