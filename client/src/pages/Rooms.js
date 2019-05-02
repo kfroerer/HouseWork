@@ -7,6 +7,7 @@ import rooms from "../rooms.json";
 import { Input,  FormBtn } from "../components/Form";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import PageMenu from '../components/PageMenu';
+import Footer from '../components/Footer';
 
 
 
@@ -81,7 +82,7 @@ class Rooms extends Component {
         
 
         {/* Room Display */}
-        <div style={{ overflow: "auto", marginTop: '90px', marginBottom: '30px', marginLeft: '25px' }}>
+        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '45px' }}>
           {this.state.rooms.map(room => (
             <Link key={room.id} to={"/rooms/" + room.id}>
               <Room
@@ -98,7 +99,7 @@ class Rooms extends Component {
         <div className="container">
           {this.renderMemberForm()}
         </div>
-
+      <Footer attached="bottom"/>
       </Container>
     );
   }
