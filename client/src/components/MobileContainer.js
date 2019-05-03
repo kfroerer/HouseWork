@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
 import bigImage from '../assets/images/livingroom.jpg';
+import kitchen from '../assets/images/kitchen2.jpg';
 
 export default class MobileContainer extends Component {
   constructor(props){
@@ -80,23 +81,23 @@ export default class MobileContainer extends Component {
             <Segment
               inverted
               textAlign='center'
-              style={{ minHeight: 50, padding: '1em 0em', backgroundImage: `url(${bigImage})`}}
+              style={{ minHeight: 50, padding: '1em 0em', backgroundImage: `url(${kitchen})`, backgroundPosition: 'center bottom'}}
               vertical
             >
               <Container>
-                <Menu inverted pointing secondary size='large'>
+                <Menu pointing secondary size='large' style={{background: 'transparent'}}>
                   <Menu.Item onClick={this.handleToggle}>
-                    <Icon name='sidebar' />
+                    <Icon circular color="white" name='sidebar' style={{color: 'black', marginBottom: '7px'}} />
                   </Menu.Item>
-                  <Menu.Item position='right' style={{marginBottom: '-20px'}}>
+                  <Menu.Item position='right' style={{marginBottom: '-15px'}}>
                     <Link to="/login">
-                    <Button as='a'  basic inverted color='teal' style={{marginRight: '-20px'}}
+                    <Button as='a' secondary style={{marginRight: '-15px', color: '#06d2d2'}}
                     onClick={this.props.handleloginClick}>
                       Log in
                     </Button>
                     </Link>
                     <Link to="/register">
-                    <Button basic inverted color='teal' style={{ marginLeft: '0.5em', marginRight: '-20px' }}
+                    <Button as='a' secondary style={{ marginLeft: '0.5em', marginRight: '-20px', color: '#06d2d2' }}
                       onClick={this.props.handleregisterClick}>
                       Register
                     </Button>

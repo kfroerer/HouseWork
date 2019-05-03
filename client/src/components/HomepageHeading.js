@@ -28,12 +28,14 @@ class HomepageHeading extends Component {
         content='HouseWork'
         inverted
         style={{
-          fontSize: mobile ? '3em' : '6em',
+          fontSize: mobile ? '4em' : '7em',
           fontWeight: 'normal',
           marginBottom: 0,
           marginTop: mobile ? '.5em' : '1.5em',
           color: '#06d2d2',
-          letterSpacing: '5px'
+          letterSpacing: '5px',
+          textShadow: '2px 2px black',
+          paddingBottom: '80px'
         }}
       />
       <Header
@@ -41,14 +43,15 @@ class HomepageHeading extends Component {
         content='We help you make your house work.'
         inverted
         style={{
-          fontSize: mobile ? '1em' : '1.7em',
+          fontSize: mobile ? '1.5em' : '1.7em',
           fontWeight: 'normal',
-          marginTop: mobile ? '1.0em' : '1.5em',
-          marginBottom: mobile ? '2.5em': '2.0em'
+          marginTop: mobile ? '1.0em' : '0.5em',
+          marginBottom: mobile ? '2.5em': '2.0em',
+          textShadow: '1px 1px black',
         }}
       />
       <Link to="/register">
-      <Button inverted color='black' size='big' onClick={this.handleloginClick}>
+      <Button inverted color='black' size='big' onClick={this.handleloginClick} style={{marginBottom: '5px'}}>
         Get Started
         <Icon name='right arrow' />
       </Button>

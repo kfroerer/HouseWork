@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading';
-import kitchen from '../assets/images/kitchen.jpg';
+import kitchen from '../assets/images/kitchen2.jpg';
 
 class DesktopContainer extends Component {
   constructor(props){
@@ -53,7 +53,7 @@ class DesktopContainer extends Component {
             <Segment
               inverted
               textAlign='center'
-              style={{ minHeight: 350, padding: '1em 0em', backgroundImage: `url(${kitchen})` }}
+              style={{ minHeight: 350, padding: '1em 0em', backgroundImage: `url(${kitchen})`, backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}
               vertical
             >
               <Menu style={{marginTop: "-19px"}}
