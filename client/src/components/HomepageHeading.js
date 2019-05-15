@@ -28,12 +28,12 @@ class HomepageHeading extends Component {
         content='HouseWork'
         inverted
         style={{
-          fontSize: mobile ? '4em' : '7em',
+          fontSize: mobile ? '3.5em' : '7em',
           fontWeight: 'normal',
           marginBottom: 0,
           marginTop: mobile ? '.5em' : '1.5em',
           color: '#06d2d2',
-          letterSpacing: '5px',
+          letterSpacing: '4px',
           textShadow: '2px 2px black',
           paddingBottom: '80px'
         }}

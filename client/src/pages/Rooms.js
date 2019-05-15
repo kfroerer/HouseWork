@@ -82,7 +82,7 @@ class Rooms extends Component {
         
 
         {/* Room Display */}
-        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '45px' }}>
+        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '20px' }}>
           {this.state.rooms.map(room => (
             <Link key={room.id} to={"/rooms/" + room.id}>
               <Room
@@ -96,7 +96,7 @@ class Rooms extends Component {
           ))}
         </div>
 
-        <div className="container">
+        <div className="container" style={{marginBottom: '30px'}} >
           {this.renderMemberForm()}
         </div>
       <Footer attached="bottom"/>

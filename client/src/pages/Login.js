@@ -60,7 +60,7 @@ export default class Login extends Component {
       <PageMenu />
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Form size='large' onSubmit={this.handleLogin}>
+          <Form size='large' onSubmit={this.handleLogin} style={{padding: '2em'}}>
             <Segment stacked>
           <Header as='h2' color='white' textAlign='center' style={{marginBottom:'20px', marginTop: '10px'}} >
             Log-in to your account
@@ -90,7 +90,7 @@ export default class Login extends Component {
               </Button>
             </Segment>
           </Form>
-          <Message>
+          <Message style={{marginLeft: '8%', marginRight: '8%'}}>
             <p>New to us?</p>   
             <Link to="/register">
             <Button color='teal' size='medium'>Sign Up</Button>

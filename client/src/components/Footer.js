@@ -5,7 +5,7 @@ const Footer = () => {
 
 return(
 
-<Segment attached="bottom" inverted vertical style={{ padding: '1.5em 0em', height: "140px" }}>
+<Segment attached="bottom" inverted vertical style={{ padding: '1.5em 0em', height: "200px" }}>
 <Container>
   <Grid>
     <Grid.Row>
@@ -16,7 +16,7 @@ return(
         <List horizontal>
           <List.Item>
             {/* <Image  /> */}
-            <List.Content inverted>
+            <List.Content>
               <List.Header style={{color: 'white', fontSize: "1.5rem", marginBottom: "5px"}}>
                 Kendra Jones
                 </List.Header>
@@ -29,7 +29,7 @@ return(
               <List.Header style={{color: 'white', fontSize: "1.5rem", marginBottom: "5px"}}>
                 Kellam Witherington
                 </List.Header>
-                Front-end Developer
+                Full-Stack Developer
               </List.Content> 
            </List.Item>
            <List.Item>
@@ -38,7 +38,7 @@ return(
               <List.Header style={{color: 'white', fontSize: "1.5rem", marginBottom: "5px"}}>
                 Victoria Ramirez
                 </List.Header>
-                Backend Developer
+                Full-Stack Developer
               </List.Content> 
            </List.Item>
 

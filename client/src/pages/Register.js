@@ -60,7 +60,7 @@ export default class Register extends Component {
         <PageMenu />
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Form size='large' onSubmit={this.handleRegister}>
+            <Form size='large' onSubmit={this.handleRegister} style={{padding: '2em'}}>
               <Segment stacked>
             <Header as='h2' color='white' textAlign='center' style={{marginBottom:'20px', marginTop: '10px'}}>
               Create your account
@@ -80,7 +80,7 @@ export default class Register extends Component {
                 iconPosition='left'
                 placeholder='Email'
                 type='text'
-                value={this.state.password}
+                value={this.state.email}
                 onChange={this.handleChange}
                 id="email"
               />
@@ -100,7 +100,7 @@ export default class Register extends Component {
                 </Button>
               </Segment>
             </Form>
-            <Message>
+            <Message style={{marginLeft: '8%', marginRight: '8%'}}>
               <p>Already have an account?</p>   
               <Link to="/login">
               <Button color='teal' size='medium'>Login</Button>

@@ -75,7 +75,7 @@ render() {
   }
   return (
   <ResponsiveContainer>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '5em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -139,12 +139,12 @@ render() {
           as='h4'
           className='header'
           horizontal
-          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+          style={{ margin: '3em 0em', textTransform: 'uppercase', fontSize: '20px' }}
         >
           <a href='#'>Why HouseWork?</a>
         </Divider>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '3em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
           Features You Can Expect
