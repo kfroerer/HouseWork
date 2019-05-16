@@ -42,7 +42,7 @@ export default class Login extends Component {
         isAuthenticated();
         history.push('/rooms');
       })
-      .catch(err => console.log('Login failed!', err));
+      .catch(err => alert('Login failed!', err));
   }
 
   render() {

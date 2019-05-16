@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the roomController
 module.exports = {
   findAll: function(req, res) {
-    console.log("db.room is " + db.room);
+    console.log("db.room is " + db.Room);
     db.Room.findAll({})
       .then(res => res.json(res))
       .catch(err => res.status(422).json(err));
