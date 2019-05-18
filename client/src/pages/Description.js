@@ -39,20 +39,21 @@ class Description extends Component {
   completeTask = () => {
     let newDate;
     let completeStatus;
+    const { date, frequency, task } = this.state
     if (this.state.frequency === "Daily") {
-      newDate = moment(this.state.date).add(1, 'day').format('YYYY-MM-DD');
-    } else if (this.state.frequency === "Weekly") {
-      newDate = moment(this.state.date).add(7, 'day').format('YYYY-MM-DD');
-    } else if (this.state.frequency === "Bi-Weekly") {
-      newDate = moment(this.state.date).add(14, 'day').format('YYYY-MM-DD');
-    } else if (this.state.frequency === "Monthly") {
-      newDate = moment(this.state.date).add(1, 'month').format('YYYY-MM-DD');
-    } else if (this.state.frequency === "Annually") {
-      newDate = moment(this.state.date).add(1, 'year').format('YYYY-MM-DD');
+      newDate = moment(date).add(1, 'day').format('YYYY-MM-DD');
+    } else if (frequency === "Weekly") {
+      newDate = moment(date).add(7, 'day').format('YYYY-MM-DD');
+    } else if (frequency === "Bi-Weekly") {
+      newDate = moment(date).add(14, 'day').format('YYYY-MM-DD');
+    } else if (frequency === "Monthly") {
+      newDate = moment(date).add(1, 'month').format('YYYY-MM-DD');
+    } else if (frequency === "Annually") {
+      newDate = moment(date).add(1, 'year').format('YYYY-MM-DD');
     } else {
       completeStatus = true;
     }
-    API.updateTask(this.state.task.id, {
+    API.updateTask(task.taskId, {
       status: completeStatus,
       date: newDate
     })
@@ -60,9 +61,9 @@ class Description extends Component {
   }
 
   handleFormSubmit = event => {
-    const { title, owner, date, frequency, description } = this.state;
-    if (this.state.title && this.state.owner && this.state.date) {
-      API.updateTask(this.state.task.id, {
+    const { task, title, owner, date, frequency, description } = this.state;
+    if (title && owner && date) {
+      API.updateTask(task.taskId, {
         title,
         owner,
         date,
@@ -79,21 +80,21 @@ class Description extends Component {
       <Container fluid>
         <Jumbotron>
           <h1>
-            {this.state.task.title}
+            {this.state.title}
           </h1>
         </Jumbotron>
 
-        <Link to={"/rooms/" + this.state.task.roomId} style={{ color: "#FF5E00" }}>← Back to Tasks</Link>
+        <Link to={"/rooms/" + this.state.roomId} style={{ color: "#FF5E00" }}>← Back to Tasks</Link>
 
         <div className="card" style={{ marginBottom: "1rem", marginTop: "1rem" }}>
           <div className="card-body">
             <h3 className="card-title">Description</h3>
-            <p className="card-text">{this.state.task.description}</p>
+            <p className="card-text">{this.state.description}</p>
           </div>
           <ul className="list-group list-group-flush">
-            <li className="list-group-item">Due {moment(this.state.task.date).endOf('day').fromNow()}</li>
-            <li className="list-group-item">Date: {moment(this.state.task.date).format('LL')}</li>
-            <li className="list-group-item">Owned By {this.state.task.owner}</li>
+            <li className="list-group-item">Due {moment(this.state.date).endOf('day').fromNow()}</li>
+            <li className="list-group-item">Date: {moment(this.state.date).format('LL')}</li>
+            <li className="list-group-item">Owned By {this.state.owner}</li>
             <li className="list-group-item">This Task is {(!isComplete) ? (
               "Reoccuring"
             ) : (

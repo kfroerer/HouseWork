@@ -16,11 +16,11 @@ const setTaskStyling = ({ date }) => {
     const now = new Date();
     const dueAlert = moment.duration({ from: now, to: date }).asHours();
     if (dueAlert < 0) {
-        return { backgroundColor: '#FF5E0080', border: 'none', paddingTop: '10px'};
+        return { backgroundColor: '#FF5E0080', border: 'none', paddingTop: '10px', marginTop: '6px'};
     } else if (dueAlert < 24) {
-        return { backgroundColor: '#FFBB0080', border: 'none', paddingTop: '10px'};
+        return { backgroundColor: '#FFBB0080', border: 'none', paddingTop: '10px', marginTop: '6px'};
     }
-    return { backgroundColor: '#00CCCC80', border: 'none', paddingTop: '10px'};
+    return { backgroundColor: '#00CCCC80', border: 'none', paddingTop: '10px', marginTop: '6px'};
 }
 
 const setFontStyling = ({ date }) => {
@@ -54,6 +54,7 @@ class Task extends Component {
     loadTasks = () => {
         API.getTasksByRoom(this.props.match.params.id)
             .then(res => {
+                console.log(res.data);
                 this.setState({
                     tasks: res.data,
                     title: "",
@@ -67,6 +68,7 @@ class Task extends Component {
     };
 
     deleteTask = id => {
+        console.log('clicked');
         API.deleteTask(id)
             .then(res => this.loadTasks())
             .catch(err => console.log(err));
@@ -97,27 +99,27 @@ class Task extends Component {
     };
 
     mapTasks = () => this.state.tasks.map(task => (
-        <ListItem key={task.id}>
+        <ListItem key={task.taskId}>
             <strong>
                 <div className="card" style={setTaskStyling(task)}>
                     <div className="container">
                         <div className="col-sm-10">
-                            <Link to={"/tasks/" + task.id}>
+                            <Link to={"/tasks/" + task.taskId}>
                                 <div className="row" style={setFontStyling(task)}>
-                                    <div className="col-sm">
+                                    <div className="col-sm" style={{fontSize:'20px'}}>
                                         {task.title}
                                     </div>
                                     <div className="col-sm" >
-                                        {moment(task.date).endOf('day').fromNow()}
+                                        Due: {moment(task.date).endOf('day').fromNow()}
                                     </div>
                                     <div className="col-sm">
-                                        {task.owner}
+                                       Belongs to: {task.owner}
                                     </div>
                                 </div>
                             </Link>
                         </div>
                         <div className="col-sm-2" >
-                            <DeleteBtn onClick={() => this.deleteTask(task.id)} />
+                            <DeleteBtn onClick={() => this.deleteTask(task.taskId)} />
                         </div>
                     </div>
                 </div>
@@ -128,7 +130,7 @@ class Task extends Component {
 
     renderForm = () => (
         
-        <form>
+        <form  style={{marginTop: '20px'}}>
             <label htmlFor="taskName">Create New Task:</label>
             <Input
                 value={this.state.title}
@@ -173,7 +175,7 @@ class Task extends Component {
             <Container fluid>
                   <PageMenu style={{marginBottom: '90px'}}/>
                 
-                <Segment raised inverted color="teal" textAlign='center' style={{marginTop: '100px'}}>
+                <Segment raised inverted color="teal" textAlign='center' style={{marginTop: '100px', width:'300px'}}>
                     
                     <h1>
                         {this.state.room.title} TASKS

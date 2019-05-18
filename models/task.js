@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
     var task = sequelize.define("Task", {
       houseId: DataTypes.INTEGER,
-      taskId: DataTypes.INTEGER,  
+      taskId: DataTypes.INTEGER, 
+      title: {type:DataTypes.STRING, allowNull: false}, 
       status: {type: DataTypes.BOOLEAN},
       frequency: {type: DataTypes.STRING, allowNull: true},
       owner: {type: DataTypes.STRING, allowNull: false},

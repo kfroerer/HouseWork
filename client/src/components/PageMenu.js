@@ -29,7 +29,7 @@ export default class PageMenu extends Component {
           // style={{ marginBottom: '-10px' }}
           >
             <Link to="/">
-              <Button basic inverted color='teal' >
+              <Button basic inverted color='teal' onClick={() => this.handlelogoutClick} >
                 Logout
                             </Button>
             </Link>

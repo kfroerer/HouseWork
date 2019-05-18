@@ -24,7 +24,7 @@ class Rooms extends Component {
   loadRooms = () => {
     API.getRooms()
       .then(res =>
-        this.setState({ rooms: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ rooms: res.data })
       )
       .catch(err => console.log(err));
   };
@@ -82,7 +82,7 @@ class Rooms extends Component {
         
 
         {/* Room Display */}
-        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '20px' }}>
+        <div style={{ overflow: "auto", marginTop: '120px', marginBottom: '30px', marginLeft: '20px', width: '300px' }}>
           {this.state.rooms.map(room => (
             <Link key={room.id} to={"/rooms/" + room.id}>
               <Room

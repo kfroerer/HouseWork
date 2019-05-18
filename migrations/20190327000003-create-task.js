@@ -4,6 +4,10 @@ module.exports = {
     return queryInterface.createTable('Tasks', {
       houseId: Sequelize.INTEGER,
       taskId: Sequelize.INTEGER,
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       status: {
         type: Sequelize.BOOLEAN
       },
@@ -15,6 +19,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      description: {type: Sequelize.STRING},
       date: {
         type: Sequelize.DATE, 
         allowNull: false
